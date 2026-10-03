@@ -12,10 +12,15 @@
 
 下載：[Visual Studio Community](https://visualstudio.microsoft.com/zh-hant/vs/community/)
 
-1. 點「免費下載」，執行下載的安裝程式。
-2. 開啟 Visual Studio Installer 的「工作負載」畫面。
-3. 勾選 **使用 C++ 的桌面開發**。
-4. 點「安裝」，等待完成。
+1. 在網頁找到 **Visual Studio Community**，點這一欄的 **「免費下載」**。
+2. 執行下載的安裝程式。
+3. 開啟 Visual Studio Installer 的「工作負載」畫面。
+4. 勾選 **使用 C++ 的桌面開發**。
+5. 點「安裝」，等待完成。
+
+下載頁參考截圖：選左側 **Community → 免費下載**。
+
+![Visual Studio Community 免費下載](../assets/vs-community-free-download.jpg)
 
 完成確認：能開啟 Visual Studio。
 

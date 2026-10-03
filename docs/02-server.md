@@ -61,7 +61,12 @@ C:\RO-Server\rathena
 C:\RO-Server\rathena\rAthena.sln
 ```
 
-選擇 **Release → x64 → 上方選單「建置（B）」→「建置方案」**。
+先選擇 **Release → x64**，再用以下任一方式建置：
+
+- 選單：上方「建置（B）」→「建置方案」。
+- 快捷鍵：**Ctrl + Shift + B**（同時按下，Visual Studio 預設按鍵）。
+
+[快捷鍵參考：Microsoft 官方文件](https://learn.microsoft.com/zh-tw/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)
 
 完成後應有這三個檔案，且建置沒有失敗：
 

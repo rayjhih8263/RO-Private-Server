@@ -2,7 +2,7 @@
 
 繁體中文 | [English](en/02-server.md)
 
-依序完成下面步驟。資料庫指令用於全新、空白資料庫。
+依序完成下面步驟。本章以 **Client 與 Server 在同一台 Windows 電腦上測試** 為前提；資料庫指令用於全新、空白資料庫。
 
 ## 1. 安裝 Git
 
@@ -17,7 +17,7 @@
 1. 在網頁找到 **Visual Studio Community**，點這一欄的 **「免費下載」**。
 2. 執行下載的安裝程式。
 3. 開啟 Visual Studio Installer 的「工作負載」畫面。
-4. 勾選 **使用 C++ 的桌面開發**。
+4. 勾選 **使用 C++ 的桌面開發**，保留該工作負載預設勾選的 MSVC 編譯工具與 Windows SDK。
 5. 點「安裝」，等待完成。
 
 下載頁參考截圖：選左側 **Community → 免費下載**。
@@ -51,7 +51,12 @@ C:\RO-Server\rathena
 
 要重現原本成功的版本，使用已保存的原始碼；上面的指令會下載當前版本。
 
-完成確認：資料夾內能找到 `rAthena.sln`。
+完成確認：資料夾內能找到 `rAthena.sln`。下載後，在 Git Bash 輸入以下指令並記下輸出的版本編號，之後才能重現相同原始碼：
+
+```bash
+cd /c/RO-Server/rathena
+git rev-parse HEAD
+```
 
 [Windows 安裝參考手冊](https://github.com/rathena/rathena/wiki/Install-on-Windows)
 
@@ -62,6 +67,10 @@ C:\RO-Server\rathena
 ```text
 C:\RO-Server\rathena\rAthena.sln
 ```
+
+**編譯前先核對 PACKETVER**：目前 Client 為 `2021-11-03_Ragexe_patched.exe`，日期值是 `20211103`。檢查 `src/config/packets.hpp` 及 `src/custom/defines_pre.hpp` 是否有不同的 `PACKETVER` 定義；自訂定義可能覆蓋預設值。你原本 Server 的最終設定仍待核對，請參考 [01 確認版本](01-versions.md)。若修改封包版本，必須重新建置才能生效。
+
+[設定參考：rAthena packets.hpp](https://github.com/rathena/rathena/blob/master/src/config/packets.hpp)
 
 先選擇 **Release → x64**，再用以下任一方式建置：
 
@@ -78,7 +87,7 @@ C:\RO-Server\rathena\rAthena.sln
 15 成功，0 失敗
 ```
 
-確認 **失敗為 0**，並產生以下三個檔案。若使用不同版本的 rAthena，成功專案數可能不同：
+確認 **失敗為 0**，並在 `C:\RO-Server\rathena` 找到以下三個檔案。若使用不同版本的 rAthena，成功專案數可能不同：
 
 ```text
 login-server.exe
@@ -131,13 +140,17 @@ map-server.exe
 
 ## 6. 建立資料庫
 
-開啟 **MySQL Client (MariaDB)**，輸入 root 密碼。
+開啟 **MySQL Client (MariaDB)**，輸入安裝時設定的 root 密碼。這個管理員密碼與下面供 rAthena 使用的資料庫密碼是兩個不同用途的密碼。
+
+先輸入以下指令核對實際版本與 Port；若 Port 不是 3306，步驟 8 要使用這裡顯示的值：
+
+```sql
+SELECT VERSION(), @@port;
+```
 
 **資料庫帳號也可以自訂**。下面的 `YOUR_DB_USER`、`YOUR_DB_PASSWORD` 都是占位文字，執行前要換成自己的帳號和密碼（例如帳號 `ro_user`）。三行中的帳號必須相同。
 
 這是供 rAthena 連線的資料庫帳號，不是遊戲登入帳號；`localhost` 表示限本機使用。資料庫名稱這份手冊維持 `ragnarok`、`ragnarok_log`。
-
-![資料庫帳號與其他可調整欄位紅框說明](../assets/mariadb-custom-fields.svg)
 
 **欄位標示：藍色粗斜體為帳號；紅色粗斜體為密碼。** 以下是顏色說明圖，下方 SQL 區塊可直接複製，執行前請替換占位文字。
 
@@ -152,9 +165,11 @@ GRANT ALL PRIVILEGES ON ragnarok_log.* TO 'YOUR_DB_USER'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
+完成確認：每行執行後沒有 `ERROR`。若提示資料庫或帳號已存在，先確認是否已做過這一步，不要刪除既有資料重新建立。
+
 ## 7. 匯入資料表
 
-在同一個視窗依序執行：
+在同一個 MariaDB Client 視窗依序執行（保持 root 登入）。`SOURCE` 後面是 **你的實際原始碼路徑**；若資料夾不同，要一起更改。SQL 檔請使用與編譯 Server 相同版本原始碼內的檔案：
 
 ```sql
 USE ragnarok;
@@ -165,7 +180,7 @@ SOURCE C:/RO-Server/rathena/sql-files/logs.sql;
 SHOW TABLES;
 ```
 
-完成後能看到資料表，沒有 SQL 錯誤。
+完成確認：`ragnarok` 中能看到 `login`、`char` 等資料表；`ragnarok_log` 中能看到 `loginlog`，且匯入過程沒有 `ERROR`。如果顯示無法開啟檔案，先檢查 `SOURCE` 路徑。
 
 ## 8. 設定資料庫連線
 
@@ -175,15 +190,24 @@ SHOW TABLES;
 C:\RO-Server\rathena\conf\inter_athena.conf
 ```
 
-修改檔案中已有的資料庫連線欄位：
+修改檔案中以下 **6 組連線欄位**，包括容易漏掉的 `ipban_db`：
 
-- 主機：127.0.0.1
-- Port：步驟 5 設定的 TCP port（預設 `3306`）
-- 資料庫帳號：步驟 6 自訂的帳號（`YOUR_DB_USER` 替換後的實際值）
-- 資料庫密碼：步驟 6 設定的密碼
-- Login、Char、Map、Web 使用資料庫：ragnarok
-- Log 使用資料庫：ragnarok_log
-- `log_login_db`：loginlog
+| IP 欄位 | Port 欄位 | 帳號欄位 | 密碼欄位 | 資料庫欄位 | 資料庫名稱 |
+| --- | --- | --- | --- | --- | --- |
+| `login_server_ip` | `login_server_port` | `login_server_id` | `login_server_pw` | `login_server_db` | `ragnarok` |
+| `ipban_db_ip` | `ipban_db_port` | `ipban_db_id` | `ipban_db_pw` | `ipban_db_db` | `ragnarok` |
+| `char_server_ip` | `char_server_port` | `char_server_id` | `char_server_pw` | `char_server_db` | `ragnarok` |
+| `map_server_ip` | `map_server_port` | `map_server_id` | `map_server_pw` | `map_server_db` | `ragnarok` |
+| `web_server_ip` | `web_server_port` | `web_server_id` | `web_server_pw` | `web_server_db` | `ragnarok` |
+| `log_db_ip` | `log_db_port` | `log_db_id` | `log_db_pw` | `log_db_db` | `ragnarok_log` |
+
+每一組的 IP 都填 `127.0.0.1`，Port 都填步驟 5 的值（預設 `3306`），帳號與密碼都填步驟 6 自訂的值。只有資料庫名稱依表格分別填入。另保持 `log_login_db: loginlog`。
+
+**檢查覆蓋設定**：`inter_athena.conf` 最後會載入 `conf/import/inter_conf.txt`。若該檔已有相同欄位，請在該檔修改，避免主設定被覆蓋；全新設定也可將自訂欄位放在這個 import 檔中。儲存後重新啟動 Server。
+
+[欄位名稱參考：rAthena inter_athena.conf](https://github.com/rathena/rathena/blob/master/conf/inter_athena.conf)
+
+資料庫帳號與 Server 之間的連線帳號是不同的：`char_athena.conf`、`map_athena.conf` 的 `userid`／`passwd` 對應 `ragnarok.login` 中 `sex = 'S'` 的 Server 帳號，**不要直接填成步驟 6 的資料庫帳號**。本章僅本機測試；日後開放外部連線前，須更換預設 Server 連線帳密，並同步修改對應設定及資料列。
 
 儲存檔案。
 
@@ -204,7 +228,7 @@ map-server.exe
 - Map：online，Port 5121
 - 沒有資料庫連線錯誤
 
-**完成：三個 Server 正常啟動。**
+**完成確認：三個 Server 保持執行，沒有資料庫或 Server 間連線錯誤。** 這代表本章的啟動檢查通過；能否登入遊戲，還需要完成下一章 Client 設定。
 
 [下一步：建立 RO Client](03-client.md)
 

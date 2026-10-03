@@ -2,7 +2,7 @@
 
 [繁體中文](../02-server.md) | English
 
-Follow the steps in order. The database commands below are intended for a fresh, empty database.
+Follow the steps in order. This chapter assumes **the client and server are tested on the same Windows computer**. The database commands below are intended for a fresh, empty database.
 
 ## 1. Install Git
 
@@ -17,7 +17,7 @@ Download: [Visual Studio Community](https://visualstudio.microsoft.com/vs/commun
 1. Find **Visual Studio Community** and click **Free download** in that column.
 2. Run the downloaded installer.
 3. Open the **Workloads** screen in Visual Studio Installer.
-4. Select **Desktop development with C++**.
+4. Select **Desktop development with C++** and keep the default MSVC build tools and Windows SDK selected.
 5. Click **Install** and wait for completion.
 
 Download-page reference: choose **Community → Free download** on the left. The saved screenshot shows the Traditional Chinese interface.
@@ -51,7 +51,12 @@ C:\RO-Server\rathena
 
 Use the previously saved source to reproduce the original successful version. The command above downloads the current version.
 
-Completion check: `rAthena.sln` exists in the folder.
+Completion check: `rAthena.sln` exists in the folder. After downloading, run the following in Git Bash and record the commit hash so you can reproduce the same source version later:
+
+```bash
+cd /c/RO-Server/rathena
+git rev-parse HEAD
+```
 
 [rAthena Windows installation guide](https://github.com/rathena/rathena/wiki/Install-on-Windows)
 
@@ -62,6 +67,10 @@ Open:
 ```text
 C:\RO-Server\rathena\rAthena.sln
 ```
+
+**Check PACKETVER before building**: the current client is `2021-11-03_Ragexe_patched.exe`, whose date value is `20211103`. Check `src/config/packets.hpp` and `src/custom/defines_pre.hpp` for conflicting `PACKETVER` definitions; a custom definition can override the default. The owner's final server setting still needs verification; see [01 Check versions](01-versions.md). Rebuild after changing the packet version.
+
+[Reference: rAthena packets.hpp](https://github.com/rathena/rathena/blob/master/src/config/packets.hpp)
 
 Select **Release → x64**, then build using either method:
 
@@ -76,7 +85,7 @@ Check the **Output** window at the bottom. The owner's successful build reported
 15 succeeded, 0 failed
 ```
 
-Verify **0 failed** and that these three files were generated. The number of successful projects may differ with a different rAthena version:
+Verify **0 failed** and that these three files were generated in `C:\RO-Server\rathena`. The number of successful projects may differ with a different rAthena version:
 
 ```text
 login-server.exe
@@ -129,13 +138,17 @@ These screenshots identify the fields and show MariaDB 10.6. Customize the servi
 
 ## 6. Create the databases
 
-Open **MySQL Client (MariaDB)** and enter the root password.
+Open **MySQL Client (MariaDB)** and enter the root password set during installation. This administrator password serves a different purpose from the database password used by rAthena below.
+
+Check the actual installed version and port first. If the port is different from 3306, use the reported value in step 8:
+
+```sql
+SELECT VERSION(), @@port;
+```
 
 **The database username is customizable.** Replace `YOUR_DB_USER` and `YOUR_DB_PASSWORD` with your own username and password before running these commands (for example, username `ro_user`). Use the same username in all three relevant lines.
 
 This account is for rAthena's database connection, separate from a game login account. `localhost` restricts it to local connections. This guide keeps database names `ragnarok` and `ragnarok_log`.
-
-![Username and other customizable fields](../../assets/mariadb-custom-fields.en.svg)
 
 **Field colors: blue bold italic = username; red bold italic = password.** The image illustrates the fields. Copy the SQL block below and replace the placeholders before running it.
 
@@ -150,9 +163,11 @@ GRANT ALL PRIVILEGES ON ragnarok_log.* TO 'YOUR_DB_USER'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
+Completion check: each statement completes without `ERROR`. If a database or user already exists, check whether this step was already performed rather than deleting existing data.
+
 ## 7. Import the tables
 
-In the same window, run these commands in order:
+In the same MariaDB client window, still logged in as root, run these commands in order. Use **your actual source folder path** after `SOURCE` if it differs. Import SQL files from the same source version used to build the server:
 
 ```sql
 USE ragnarok;
@@ -163,7 +178,7 @@ SOURCE C:/RO-Server/rathena/sql-files/logs.sql;
 SHOW TABLES;
 ```
 
-Completion check: tables are listed and no SQL errors appear.
+Completion check: `ragnarok` contains tables such as `login` and `char`; `ragnarok_log` contains `loginlog`; and the import reports no `ERROR`. If a file cannot be opened, check its `SOURCE` path.
 
 ## 8. Configure the database connection
 
@@ -173,15 +188,24 @@ Open:
 C:\RO-Server\rathena\conf\inter_athena.conf
 ```
 
-Edit the existing database connection fields:
+Update all **six groups of connection fields**, including the easily missed `ipban_db` group:
 
-- Host: `127.0.0.1`
-- Port: the TCP port set in step 5 (default `3306`)
-- Database username: the actual username chosen in step 6
-- Database password: the password chosen in step 6
-- Login, Char, Map and Web database: `ragnarok`
-- Log database: `ragnarok_log`
-- `log_login_db`: `loginlog`
+| IP | Port | Account | Password | Database | Value |
+| --- | --- | --- | --- | --- | --- |
+| `login_server_ip` | `login_server_port` | `login_server_id` | `login_server_pw` | `login_server_db` | `ragnarok` |
+| `ipban_db_ip` | `ipban_db_port` | `ipban_db_id` | `ipban_db_pw` | `ipban_db_db` | `ragnarok` |
+| `char_server_ip` | `char_server_port` | `char_server_id` | `char_server_pw` | `char_server_db` | `ragnarok` |
+| `map_server_ip` | `map_server_port` | `map_server_id` | `map_server_pw` | `map_server_db` | `ragnarok` |
+| `web_server_ip` | `web_server_port` | `web_server_id` | `web_server_pw` | `web_server_db` | `ragnarok` |
+| `log_db_ip` | `log_db_port` | `log_db_id` | `log_db_pw` | `log_db_db` | `ragnarok_log` |
+
+In each group, set the IP to `127.0.0.1`, the port to the value from step 5 (default `3306`), and the username/password to those chosen in step 6. Set each database name according to the table. Keep `log_login_db: loginlog`.
+
+**Check overrides**: `inter_athena.conf` loads `conf/import/inter_conf.txt` at the end. If that file already contains the same settings, edit them there so they do not override your main-file changes. New custom settings can also be placed in this import file. Save and restart the server.
+
+[Field reference: rAthena inter_athena.conf](https://github.com/rathena/rathena/blob/master/conf/inter_athena.conf)
+
+Database credentials differ from the credentials used between servers. The `userid`/`passwd` values in `char_athena.conf` and `map_athena.conf` correspond to the server account with `sex = 'S'` in `ragnarok.login`; **do not replace them with the database username from step 6**. This chapter covers local testing only. Before allowing external connections, replace the default inter-server credentials and update both the matching configuration and database row.
 
 Save the file.
 
@@ -202,7 +226,7 @@ Successful startup indicators:
 - Map: online, port 5121
 - No database connection errors
 
-**Completed: all three servers start successfully.**
+**Completion check: all three servers remain running without database or inter-server connection errors.** This passes the startup check for this chapter; a game login still requires the client setup in the next chapter.
 
 [Next: Set up the RO client](03-client.md)
 

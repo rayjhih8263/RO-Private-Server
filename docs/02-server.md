@@ -2,13 +2,13 @@
 
 依序完成下面步驟。資料庫指令用於全新、空白資料庫。
 
-## 0. 安裝 Git
+## 1. 安裝 Git
 
 下載：[Git for Windows](https://gitforwindows.org/)
 
 點 **Download**，下載 Windows 安裝程式並完成安裝。後面的原始碼下載會使用 Git Bash。
 
-## 1. 安裝編譯工具
+## 2. 安裝編譯工具
 
 下載：[Visual Studio Community](https://visualstudio.microsoft.com/zh-hant/vs/community/)
 
@@ -30,7 +30,7 @@
 
 [查看官方圖文說明](https://learn.microsoft.com/zh-tw/cpp/build/vscpp-step-0-installation)
 
-## 2. 準備 rAthena
+## 3. 準備 rAthena
 
 原始碼：[rAthena GitHub](https://github.com/rathena/rathena)
 
@@ -53,7 +53,7 @@ C:\RO-Server\rathena
 
 [Windows 安裝參考手冊](https://github.com/rathena/rathena/wiki/Install-on-Windows)
 
-## 3. 編譯 Server
+## 4. 編譯 Server
 
 開啟：
 
@@ -84,7 +84,7 @@ char-server.exe
 map-server.exe
 ```
 
-## 4. 安裝資料庫
+## 5. 安裝資料庫
 
 下載：[MariaDB Server](https://mariadb.org/download/)
 
@@ -123,7 +123,7 @@ map-server.exe
 
 [查看官方圖文說明](https://mariadb.com/docs/server/server-management/install-and-upgrade-mariadb/installing-mariadb/binary-packages/installing-mariadb-msi-packages-on-windows)
 
-## 5. 建立資料庫
+## 6. 建立資料庫
 
 開啟 **MySQL Client (MariaDB)**，輸入 root 密碼。
 
@@ -138,7 +138,7 @@ GRANT ALL PRIVILEGES ON ragnarok_log.* TO 'ragnarok'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-## 6. 匯入資料表
+## 7. 匯入資料表
 
 在同一個視窗依序執行：
 
@@ -153,7 +153,7 @@ SHOW TABLES;
 
 完成後能看到資料表，沒有 SQL 錯誤。
 
-## 7. 設定資料庫連線
+## 8. 設定資料庫連線
 
 開啟：
 
@@ -166,14 +166,14 @@ C:\RO-Server\rathena\conf\inter_athena.conf
 - 主機：127.0.0.1
 - Port：3306
 - 資料庫帳號：ragnarok
-- 資料庫密碼：步驟 5 設定的密碼
+- 資料庫密碼：步驟 6 設定的密碼
 - Login、Char、Map、Web 使用資料庫：ragnarok
 - Log 使用資料庫：ragnarok_log
 - `log_login_db`：loginlog
 
 儲存檔案。
 
-## 8. 啟動 Server
+## 9. 啟動 Server
 
 依序開啟：
 

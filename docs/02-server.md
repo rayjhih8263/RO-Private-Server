@@ -61,7 +61,7 @@ C:\RO-Server\rathena
 C:\RO-Server\rathena\rAthena.sln
 ```
 
-選擇 **Release → x64 → 建置方案**。
+選擇 **Release → x64 → 上方選單「建置（B）」→「建置方案」**。
 
 完成後應有這三個檔案，且建置沒有失敗：
 

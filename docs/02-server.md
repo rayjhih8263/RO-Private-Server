@@ -88,7 +88,17 @@ map-server.exe
 
 下載：[MariaDB Server](https://mariadb.org/download/)
 
-已使用版本：**11.8.9**。下載時核對版本，選 **Windows / x86_64 / MSI**，再執行 `.msi` 安裝程式。
+已使用版本：**11.8.9**。在下載頁依序選擇：
+
+1. MariaDB Server Version：**11.8.9**。
+2. Operating System：**Windows**。
+3. Architecture：**x86_64**。
+4. Package Type：**MSI Package**。
+5. 點 **Download**，下載完成後執行 `mariadb-11.8.9-winx64.msi`。
+
+下載頁參考截圖：
+
+![MariaDB 11.8.9 Windows MSI 下載選項](../assets/mariadb-download-options-11-8-9.jpg)
 
 安裝時設定：
 

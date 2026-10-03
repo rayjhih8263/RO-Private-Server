@@ -1,0 +1,6 @@
+*.exe
+*.grf
+*.dmp
+*.sql
+.env
+*.log

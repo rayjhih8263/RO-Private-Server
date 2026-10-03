@@ -68,7 +68,15 @@ C:\RO-Server\rathena\rAthena.sln
 
 [快捷鍵參考：Microsoft 官方文件](https://learn.microsoft.com/zh-tw/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)
 
-完成後應有這三個檔案，且建置沒有失敗：
+完成後，查看 Visual Studio 下方的「輸出」視窗。
+
+你當時成功的建置結果是：
+
+```text
+15 成功，0 失敗
+```
+
+確認 **失敗為 0**，並產生以下三個檔案。若使用不同版本的 rAthena，成功專案數可能不同：
 
 ```text
 login-server.exe

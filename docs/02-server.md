@@ -1,20 +1,52 @@
 # 02 建立 Server
 
-以下是舊電腦已成功的操作順序；建立全新、空白資料庫時使用。
+依序完成下面步驟。資料庫指令用於全新、空白資料庫。
+
+## 0. 安裝 Git
+
+下載：[Git for Windows](https://gitforwindows.org/)
+
+點 **Download**，下載 Windows 安裝程式並完成安裝。後面的原始碼下載會使用 Git Bash。
 
 ## 1. 安裝編譯工具
 
-安裝 Visual Studio Community，勾選「使用 C++ 的桌面開發」。
+下載：[Visual Studio Community](https://visualstudio.microsoft.com/zh-hant/vs/community/)
+
+1. 點「免費下載」，執行下載的安裝程式。
+2. 開啟 Visual Studio Installer 的「工作負載」畫面。
+3. 勾選 **使用 C++ 的桌面開發**。
+4. 點「安裝」，等待完成。
+
+完成確認：能開啟 Visual Studio。
+
+參考畫面（Microsoft 官方文件，版本不同時外觀可能略有差異）：
+
+![Visual Studio：選擇 C++ 桌面開發](https://learn.microsoft.com/zh-tw/cpp/get-started/media/vs-2026/visual-studio-installer-cpp-workload.png)
+
+[查看官方圖文說明](https://learn.microsoft.com/zh-tw/cpp/build/vscpp-step-0-installation)
 
 ## 2. 準備 rAthena
 
-把原始碼放在：
+原始碼：[rAthena GitHub](https://github.com/rathena/rathena)
+
+建立 `C:\RO-Server` 資料夾，在資料夾空白處按右鍵 → 顯示其他選項 → Open Git Bash here，輸入：
+
+```bash
+cd /c/RO-Server
+git clone https://github.com/rathena/rathena.git
+```
+
+下載完成後，原始碼位於：
 
 ```text
 C:\RO-Server\rathena
 ```
 
-重新建立相同環境時，使用原電腦保存的原始碼。
+要重現原本成功的版本，使用已保存的原始碼；上面的指令會下載當前版本。
+
+完成確認：資料夾內能找到 `rAthena.sln`。
+
+[Windows 安裝參考手冊](https://github.com/rathena/rathena/wiki/Install-on-Windows)
 
 ## 3. 編譯 Server
 
@@ -36,12 +68,32 @@ map-server.exe
 
 ## 4. 安裝資料庫
 
-舊電腦使用 MariaDB 11.8.9。安裝時設定：
+下載：[MariaDB Server](https://mariadb.org/download/)
+
+已使用版本：**11.8.9**。下載時核對版本，選 **Windows / x86_64 / MSI**，再執行 `.msi` 安裝程式。
+
+安裝時設定：
 
 - 服務名稱：MariaDB
 - Port：3306
 - 設定自己的 root 密碼
 - 勾選 Install as service、Enable networking
+
+完成確認：開始選單可找到 MariaDB Client。
+
+參考畫面（MariaDB 官方文件）：
+
+**設定 root 密碼的畫面**
+
+![MariaDB：設定 root 密碼](https://2988006611-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FSsmexDFPv2xG2OTyO5yV%2Fuploads%2Fgit-blob-9a33617da161fc206c87b5bfc620c2bad5297f36%2FDatabaseProperties_1_New.png?alt=media)
+
+**設定服務名稱與 Port 的畫面**
+
+![MariaDB：服務名稱與 Port](https://2988006611-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FSsmexDFPv2xG2OTyO5yV%2Fuploads%2Fgit-blob-2e4b4eee2d20b741a9ee1cda8b5c9cfcf0495537%2FDatabaseProperties_2_New.png?alt=media)
+
+圖片只供辨認欄位；請填本手冊的 **MariaDB / 3306**，密碼用自己的。
+
+[查看官方圖文說明](https://mariadb.com/docs/server/server-management/install-and-upgrade-mariadb/installing-mariadb/binary-packages/installing-mariadb-msi-packages-on-windows)
 
 ## 5. 建立資料庫
 
@@ -110,6 +162,6 @@ map-server.exe
 - Map：online，Port 5121
 - 沒有資料庫連線錯誤
 
-**這一步完成的是 Server 啟動。三轉與伊甸園尚未設定完成。**
+**完成：三個 Server 正常啟動。**
 
 [下一步：建立 RO Client](03-client.md)

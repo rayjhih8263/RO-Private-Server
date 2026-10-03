@@ -1,34 +1,27 @@
 # 01 確認版本
 
-已使用的版本與設定：
+已確認的版本與設定：
 
 | 項目 | 版本或設定 | 參考網址 |
 | --- | --- | --- |
 | 電腦 | Windows 11 | — |
 | Server | rAthena（原始碼版本未記錄） | [rAthena 原始碼](https://github.com/rathena/rathena) |
-| 另外使用過的 Client 包 | Froggo 完整包，2022-04-06 | 對話紀錄中的 Froggo Rö Folder |
-| Client 主要參考與 GRF 來源 | ROClientFullCN；GRF 以手動個別下載後複製進資料夾 | [ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN) |
-| Client EXE（對話紀錄） | 2022-04-06 Ragexe | [EXE 版本頁](https://nemo.herc.ws/downloads/2022-04-06_Ragexe_1648707856/) |
-| PACKETVER | 20220406 | 對應上面的 Client 日期 |
+| RO Client | ROClientFullCN | [ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN) |
+| 目前登入器 | 2021-11-03_Ragexe_patched.exe | 同上 |
+| GRF 資源 | 手動個別下載，再複製到 Client 資料夾 | 同上 |
+| Server PACKETVER | 曾設為 20220406；目前值待核對 | 2021-11-03 Client 的日期值為 20211103 |
 | 編譯工具 | Visual Studio Community 2026 | [Visual Studio Community](https://visualstudio.microsoft.com/zh-hant/vs/community/) |
 | 編譯設定 | Release / x64 | — |
 | 資料庫 | MariaDB 11.8.9 | [MariaDB 下載頁](https://mariadb.org/download/) |
-| Client 翻譯資源 | ROEnglishRE（版本未記錄） | [ROEnglishRE](https://github.com/llchrisll/ROenglishRE) |
-
-ROClientFullCN 的 GRF 曾以手動個別下載方式補入資料夾。另有使用 Froggo、乾淨的 2022-04-06 Ragexe 與 ROEnglishRE 資源的紀錄；完整合併順序仍在核對。
 
 ## RO Client 完整檔名
 
 ```text
-2022-04-06_Ragexe_1648707856.exe
+2021-11-03_Ragexe_patched.exe
 ```
 
-Client 資料夾：
+這是你在 2026-10-03 重新查閱對話後確認，目前使用的登入器。
 
-```text
-C:\RO-Server\RO-Client-20220406
-```
-
-網址供查找軟體與版本；下載頁可能顯示最新版，請依表中版本核對。Client 版本頁本次未能完整讀取，尚未確認下載是否可用。
+下載頁可能顯示最新版，請依表中版本核對。
 
 [下一步：建立 Server](02-server.md)

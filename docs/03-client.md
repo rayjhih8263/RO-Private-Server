@@ -1,5 +1,7 @@
 # 03 建立 RO Client
 
+主要參考：[ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN)。
+
 以下保留舊對話中已完成的準備與設定。最後停在補丁階段，尚未成功登入遊戲。
 
 ## 1. 準備 Client 資料夾

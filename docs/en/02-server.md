@@ -2,6 +2,8 @@
 
 [繁體中文](../02-server.md) | English
 
+The main workflow has been cross-checked against the successful steps in the original setup conversation. Recording the source commit, checking PACKETVER before building, checking configuration overrides and the reminder before external access are added review checks, not claims that each was completed during the original setup.
+
 Follow the steps in order. This chapter assumes **the client and server are tested on the same Windows computer**. The database commands below are intended for a fresh, empty database.
 
 ## 1. Install Git
@@ -177,6 +179,8 @@ USE ragnarok_log;
 SOURCE C:/RO-Server/rathena/sql-files/logs.sql;
 SHOW TABLES;
 ```
+
+Original successful record: after importing `main.sql`, `ragnarok` contained **56 tables**; after importing `logs.sql`, `ragnarok_log` contained **10 tables**. Table counts may differ with another source version.
 
 Completion check: `ragnarok` contains tables such as `login` and `char`; `ragnarok_log` contains `loginlog`; and the import reports no `ERROR`. If a file cannot be opened, check its `SOURCE` path.
 

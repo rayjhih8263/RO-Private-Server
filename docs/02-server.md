@@ -2,6 +2,8 @@
 
 繁體中文 | [English](en/02-server.md)
 
+主流程已與最初架設對話中的成功紀錄交叉比對。原始碼版本記錄、編譯前 PACKETVER 核對、設定覆蓋檢查及開放外部連線前的提醒，是整理時補充的檢查，不代表當時已逐項完成。
+
 依序完成下面步驟。本章以 **Client 與 Server 在同一台 Windows 電腦上測試** 為前提；資料庫指令用於全新、空白資料庫。
 
 ## 1. 安裝 Git
@@ -179,6 +181,8 @@ USE ragnarok_log;
 SOURCE C:/RO-Server/rathena/sql-files/logs.sql;
 SHOW TABLES;
 ```
+
+原始成功紀錄：`main.sql` 匯入後，`ragnarok` 有 **56 個資料表**；`logs.sql` 匯入後，`ragnarok_log` 有 **10 個資料表**。不同原始碼版本的表數可能不同。
 
 完成確認：`ragnarok` 中能看到 `login`、`char` 等資料表；`ragnarok_log` 中能看到 `loginlog`，且匯入過程沒有 `ERROR`。如果顯示無法開啟檔案，先檢查 `SOURCE` 路徑。
 

@@ -139,6 +139,10 @@ map-server.exe
 
 ![資料庫帳號與其他可調整欄位紅框說明](../assets/mariadb-custom-fields.svg)
 
+**欄位標示：藍色粗斜體為帳號；紅色粗斜體為密碼。** 以下是顏色說明圖，下方 SQL 區塊可直接複製，執行前請替換占位文字。
+
+![建立資料庫與帳號：帳號藍色粗斜體、密碼紅色粗斜體](../assets/mariadb-create-user-highlight.svg)
+
 ```sql
 CREATE DATABASE ragnarok CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE ragnarok_log CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

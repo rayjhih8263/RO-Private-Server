@@ -137,6 +137,10 @@ This account is for rAthena's database connection, separate from a game login ac
 
 ![Username and other customizable fields](../../assets/mariadb-custom-fields.en.svg)
 
+**Field colors: blue bold italic = username; red bold italic = password.** The image illustrates the fields. Copy the SQL block below and replace the placeholders before running it.
+
+![Create databases and user: highlighted username and password](../../assets/mariadb-create-user-highlight.svg)
+
 ```sql
 CREATE DATABASE ragnarok CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE ragnarok_log CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

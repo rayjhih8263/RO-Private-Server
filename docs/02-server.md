@@ -102,8 +102,8 @@ map-server.exe
 
 安裝時設定：
 
-- 服務名稱：MariaDB
-- Port：3306
+- **Service Name（Windows 服務名稱）**：可以自訂，例如 `MariaDB` 或 `RODatabase`。這是 Windows「服務」中的名稱，不是遊戲內的 Server 名稱，也不是資料庫帳號。
+- **TCP port：3306**：MariaDB／MySQL 慣用的預設連接埠，保持預設能讓後面的連線設定一致。可以改，但步驟 8 的所有資料庫 Port 都要一起改；若 3306 已被其他資料庫占用，可另選未使用的 Port。
 - 設定自己的 root 密碼
 - 勾選 Install as service、Enable networking
 
@@ -119,7 +119,11 @@ map-server.exe
 
 ![MariaDB：服務名稱與 Port](https://2988006611-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FSsmexDFPv2xG2OTyO5yV%2Fuploads%2Fgit-blob-2e4b4eee2d20b741a9ee1cda8b5c9cfcf0495537%2FDatabaseProperties_2_New.png?alt=media)
 
-圖片只供辨認欄位；請填本手冊的 **MariaDB / 3306**，密碼用自己的。
+圖片只供辨認欄位（圖中為 MariaDB 10.6）；服務名稱可自訂，TCP port 建議維持 **3306**，密碼用自己的。
+
+**紅框欄位說明（整理圖，非安裝程式截圖）：**
+
+![服務名稱、Port 與資料庫帳號紅框說明](../assets/mariadb-custom-fields.svg)
 
 [查看官方圖文說明](https://mariadb.com/docs/server/server-management/install-and-upgrade-mariadb/installing-mariadb/binary-packages/installing-mariadb-msi-packages-on-windows)
 
@@ -127,14 +131,18 @@ map-server.exe
 
 開啟 **MySQL Client (MariaDB)**，輸入 root 密碼。
 
-將下面的 `YOUR_DB_PASSWORD` 換成自己的資料庫密碼，再執行：
+**資料庫帳號也可以自訂**。下面的 `YOUR_DB_USER`、`YOUR_DB_PASSWORD` 都是占位文字，執行前要換成自己的帳號和密碼（例如帳號 `ro_user`）。三行中的帳號必須相同。
+
+這是供 rAthena 連線的資料庫帳號，不是遊戲登入帳號；`localhost` 表示限本機使用。資料庫名稱這份手冊維持 `ragnarok`、`ragnarok_log`。
+
+![資料庫帳號與其他可調整欄位紅框說明](../assets/mariadb-custom-fields.svg)
 
 ```sql
 CREATE DATABASE ragnarok CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE ragnarok_log CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'ragnarok'@'localhost' IDENTIFIED BY 'YOUR_DB_PASSWORD';
-GRANT ALL PRIVILEGES ON ragnarok.* TO 'ragnarok'@'localhost';
-GRANT ALL PRIVILEGES ON ragnarok_log.* TO 'ragnarok'@'localhost';
+CREATE USER 'YOUR_DB_USER'@'localhost' IDENTIFIED BY 'YOUR_DB_PASSWORD';
+GRANT ALL PRIVILEGES ON ragnarok.* TO 'YOUR_DB_USER'@'localhost';
+GRANT ALL PRIVILEGES ON ragnarok_log.* TO 'YOUR_DB_USER'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
@@ -164,8 +172,8 @@ C:\RO-Server\rathena\conf\inter_athena.conf
 修改檔案中已有的資料庫連線欄位：
 
 - 主機：127.0.0.1
-- Port：3306
-- 資料庫帳號：ragnarok
+- Port：步驟 5 設定的 TCP port（預設 `3306`）
+- 資料庫帳號：步驟 6 自訂的帳號（`YOUR_DB_USER` 替換後的實際值）
 - 資料庫密碼：步驟 6 設定的密碼
 - Login、Char、Map、Web 使用資料庫：ragnarok
 - Log 使用資料庫：ragnarok_log
@@ -193,3 +201,10 @@ map-server.exe
 **完成：三個 Server 正常啟動。**
 
 [下一步：建立 RO Client](03-client.md)
+
+
+## 來源與用途說明
+
+安裝畫面來源：上方已標示的 Microsoft、MariaDB 官方網站與文件；紅框欄位整理圖為本手冊製作。
+
+本倉庫整理個人的安裝紀錄，供學習與技術交流參考，並非官方文件，亦不代表與相關權利人有合作或授權關係。文中提及的軟體、商標及第三方圖片，其權利屬各權利人；使用、修改或散布時，仍須遵守原始授權及適用法律。標註來源或交流用途，不等於取得授權。

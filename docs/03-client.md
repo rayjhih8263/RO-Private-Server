@@ -2,10 +2,10 @@
 
 ## 這套 Client 的組成
 
-依分享對話最後續做的順序：
+已知使用過的來源與操作（完整合併順序仍在核對）：
 
-1. 最初嘗試 [ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN)，但完整 GRF 下載遇到 Git LFS 問題。
-2. 改用 Froggo Rö Folder 完整包，解壓到 `C:\RO-Server\RO-Client-20220406`。
+1. 參考 [ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN)。Git LFS 下載遇到問題後，改用手動個別下載完整 GRF，再複製到 Client 資料夾。
+2. 另外下載過 Froggo Rö Folder 完整包，解壓到 `C:\RO-Server\RO-Client-20220406`。
 3. 保留這個資料夾的資源，另外放入 `2022-04-06_Ragexe_1648707856.exe`，改用這個乾淨 EXE 測試。
 4. 使用 ROEnglishRE 的 ClientGenerator，選擇 Pre-Renewal / 2022-04-06，產生 data 與 SystemEN，接著進行資源複製與調整。
 5. 最後停在準備 WARP 補丁，尚無成功登入的完成紀錄。

@@ -6,7 +6,8 @@
 | --- | --- | --- |
 | 電腦 | Windows 11 | — |
 | Server | rAthena（原始碼版本未記錄） | [rAthena 原始碼](https://github.com/rathena/rathena) |
-| RO Client 主要參考來源 | ROClientFullCN | [ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN) |
+| Client 基底（最後續做的資料夾） | Froggo 完整包，2022-04-06 | 對話紀錄中的 Froggo Rö Folder |
+| 曾嘗試的 Client 來源 | ROClientFullCN（完整資源下載未完成，後來改用 Froggo） | [ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN) |
 | Client EXE（對話紀錄） | 2022-04-06 Ragexe | [EXE 版本頁](https://nemo.herc.ws/downloads/2022-04-06_Ragexe_1648707856/) |
 | PACKETVER | 20220406 | 對應上面的 Client 日期 |
 | 編譯工具 | Visual Studio Community 2026 | [Visual Studio Community](https://visualstudio.microsoft.com/zh-hant/vs/community/) |
@@ -14,15 +15,13 @@
 | 資料庫 | MariaDB 11.8.9 | [MariaDB 下載頁](https://mariadb.org/download/) |
 | Client 翻譯資源 | ROEnglishRE（版本未記錄） | [ROEnglishRE](https://github.com/llchrisll/ROenglishRE) |
 
-主要依 ROClientFullCN 的完整客戶端與資源作參考；ROEnglishRE 是對話中另外使用過的翻譯資源。
+依對話紀錄，最後續做的 Client 是 Froggo 完整包，加上乾淨的 2022-04-06 Ragexe，以及 ROEnglishRE Generator 產生的資源。
 
 ## RO Client 完整檔名
 
 ```text
 2022-04-06_Ragexe_1648707856.exe
 ```
-
-ROClientFullCN 目前列出的 EXE 是 `2021-11-03_Ragexe_patched.exe`，與對話紀錄的 2022-04-06 不同。實際使用版本以你資料夾內的 EXE 為準。
 
 Client 資料夾：
 

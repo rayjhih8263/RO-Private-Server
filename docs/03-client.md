@@ -1,6 +1,16 @@
 # 03 建立 RO Client
 
-主要參考：[ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN)。
+## 這套 Client 的組成
+
+依分享對話最後續做的順序：
+
+1. 最初嘗試 [ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN)，但完整 GRF 下載遇到 Git LFS 問題。
+2. 改用 Froggo Rö Folder 完整包，解壓到 `C:\RO-Server\RO-Client-20220406`。
+3. 保留這個資料夾的資源，另外放入 `2022-04-06_Ragexe_1648707856.exe`，改用這個乾淨 EXE 測試。
+4. 使用 ROEnglishRE 的 ClientGenerator，選擇 Pre-Renewal / 2022-04-06，產生 data 與 SystemEN，接著進行資源複製與調整。
+5. 最後停在準備 WARP 補丁，尚無成功登入的完成紀錄。
+
+這段是來源追查紀錄；資源複製與補丁的完整組合尚未測試成功。
 
 以下保留舊對話中已完成的準備與設定。最後停在補丁階段，尚未成功登入遊戲。
 

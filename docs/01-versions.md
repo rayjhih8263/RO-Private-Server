@@ -25,8 +25,6 @@ Client 資料夾：
 C:\RO-Server\RO-Client-20220406
 ```
 
-Server 已成功啟動；Client 補丁與登入尚未完成。接下來要確認這組版本是否適合三轉、伊甸園與 OpenKore。
-
 網址供查找軟體與版本；下載頁可能顯示最新版，請依表中版本核對。Client 版本頁本次未能完整讀取，尚未確認下載是否可用。
 
 [下一步：建立 Server](02-server.md)

@@ -20,6 +20,7 @@
 | [05 OpenKore](docs/05-openkore.md) | 連接自己的 Server | 待補充 |
 | [06 經驗與掉寶倍率](docs/06-server-rates.md) | 經驗、掉寶及卡片倍率 | 待補充 |
 | [07 新增武器與防具](docs/07-custom-equipment.md) | Server 道具資料與 Client 顯示資源 | 待補充 |
+| [08 GM 指令手冊](docs/08-gm-commands.md) | 常用中文範例、全部內建指令及別名參考 | 已整理 |
 
 ## 參考來源
 
@@ -44,3 +45,4 @@
 第三方軟體、遊戲素材、商標、截圖及圖片不屬於本授權範圍，仍依各權利人的授權規定使用。標註來源或交流用途，不等於取得授權。
 
 [完整授權說明](LICENSE.md)
+

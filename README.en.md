@@ -22,6 +22,7 @@ Choose topics as needed. These chapters are separate from the basic setup workfl
 | [05 OpenKore](docs/en/05-openkore.md) | Connect to your own server | Pending |
 | [06 Experience and drop rates](docs/en/06-server-rates.md) | Experience, item and card drop rates | Pending |
 | [07 Add weapons and armor](docs/en/07-custom-equipment.md) | Server item data and client display resources | Pending |
+| [08 GM commands](docs/en/08-gm-commands.md) | Common examples and complete built-in command reference | Available |
 
 ## References
 
@@ -39,3 +40,4 @@ Original teaching text and original diagrams, to the extent the author holds cop
 You may share and adapt this material for noncommercial purposes. Credit **rayjhih8263**, link to this repository and the license, and indicate changes. Shared adaptations must use the same license. Commercial use, including selling bundles, paid downloads, or inclusion in paid teaching materials, requires separate permission from the rights holder.
 
 Third-party software, game assets, trademarks, screenshots and images are excluded from this license and remain subject to their respective rights and licenses. This is an unofficial educational guide. Attribution and an educational purpose do not replace permission. See [the license notice](LICENSE.md).
+

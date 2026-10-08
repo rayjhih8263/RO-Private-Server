@@ -22,6 +22,7 @@
 | [05 OpenKore](docs/05-openkore.md) | 連接自己的 Server | 待補充 |
 | [06 經驗與掉寶倍率](docs/06-server-rates.md) | 經驗、掉寶及卡片倍率 | 待補充 |
 | [07 新增武器與防具](docs/07-custom-equipment.md) | Server 道具資料與 Client 顯示資源 | 待補充 |
+| [09 中文化](docs/09-localization.md) | Client 介面、道具說明與 Server NPC／訊息中文化 | 待補充 |
 
 ## 3. 管理與指令參考
 

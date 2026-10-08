@@ -24,6 +24,7 @@ Choose topics as needed. These chapters are separate from the basic setup workfl
 | [05 OpenKore](docs/en/05-openkore.md) | Connect to your own server | Pending |
 | [06 Experience and drop rates](docs/en/06-server-rates.md) | Experience, item and card drop rates | Pending |
 | [07 Add weapons and armor](docs/en/07-custom-equipment.md) | Server item data and client display resources | Pending |
+| [09 Chinese localization](docs/en/09-localization.md) | Client interface and item descriptions, server NPC dialogue and messages | Pending |
 
 ## 3. Administration and command reference
 

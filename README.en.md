@@ -4,7 +4,7 @@
 
 A Windows setup guide for learning and noncommercial technical exchange.
 
-## Basic setup
+## 1. Basic setup
 
 Complete chapters 01–03 in order to build the server, configure the client and start playing.
 
@@ -14,7 +14,7 @@ Complete chapters 01–03 in order to build the server, configure the client and
 | [02 Set up the server](docs/en/02-server.md) | Install tools, build, configure databases and create a GM account | ✅ |
 | [03 Set up the RO client](docs/en/03-client.md) | Download the client, complete GRFs, connect and start playing | ✅ |
 
-## Optional extensions
+## 2. Optional extensions
 
 Choose topics as needed. These chapters are separate from the basic setup workflow.
 
@@ -24,6 +24,14 @@ Choose topics as needed. These chapters are separate from the basic setup workfl
 | [05 OpenKore](docs/en/05-openkore.md) | Connect to your own server | Pending |
 | [06 Experience and drop rates](docs/en/06-server-rates.md) | Experience, item and card drop rates | Pending |
 | [07 Add weapons and armor](docs/en/07-custom-equipment.md) | Server item data and client display resources | Pending |
+
+## 3. Administration and command reference
+
+After setup, refer to these guides for server administration and in-game commands.
+
+| Chapter | Scope | Status |
+| --- | --- | --- |
+| [08 GM commands](docs/en/08-gm-commands.md) | Common examples, complete built-in commands and aliases, permissions and parameters | ✅ |
 
 ## References
 

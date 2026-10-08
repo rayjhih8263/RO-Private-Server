@@ -1,4 +1,4 @@
-# RO Private Server Setup Guide
+# RO 私服架設教學｜RO Private Server Setup Guide
 
 [繁體中文](README.md) | English
 

@@ -64,36 +64,76 @@ git rev-parse HEAD
 
 ## 4. Build the server
 
-Open:
+The current client is `2021-11-03_Ragexe_patched.exe`. This guide uses packet version `20211103`. Follow these steps in order:
 
-```text
-C:\RO-Server\rathena\rAthena.sln
-```
+1. **Check the default version in `src/config/packets.hpp`**. Open this file in a text editor:
 
-**Check PACKETVER before building**: the current client is `2021-11-03_Ragexe_patched.exe`, whose date value is `20211103`. Check `src/config/packets.hpp` and `src/custom/defines_pre.hpp` for conflicting `PACKETVER` definitions; a custom definition can override the default. The owner's final server setting still needs verification; see [01 Check versions](01-versions.md). Rebuild after changing the packet version.
+   ```text
+   C:\RO-Server\rathena\src\config\packets.hpp
+   ```
 
-[Reference: rAthena packets.hpp](https://github.com/rathena/rathena/blob/master/src/config/packets.hpp)
+   Press **Ctrl + F**, search for `#ifndef PACKETVER`, and locate the default definition below it:
 
-Select **Release → x64**, then build using either method:
+   ```cpp
+   #ifndef PACKETVER
+       // Official explanatory comments appear here.
+       #define PACKETVER 20211103
+   #endif
+   ```
 
-- Menu: **Build → Build Solution**.
-- Shortcut: **Ctrl + Shift + B** (Visual Studio's default keyboard mapping).
+   **Check this section without editing it.** The official comments instruct Windows users to set a custom version in `defines_pre.hpp`, as shown in step 2. Even if the default date differs, set the desired version in step 2.
 
-[Microsoft keyboard shortcut reference](https://learn.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)
+2. **Set `20211103` in `src/custom/defines_pre.hpp`**. Open:
 
-Check the **Output** window at the bottom. The owner's successful build reported:
+   ```text
+   C:\RO-Server\rathena\src\custom\defines_pre.hpp
+   ```
 
-```text
-15 succeeded, 0 failed
-```
+   Press **Ctrl + F** and search for `#define PACKETVER`. If it already exists (for example, with `20220406`), change the date to:
 
-Verify **0 failed** and that these three files were generated in `C:\RO-Server\rathena`. The number of successful projects may differ with a different rAthena version:
+   ```cpp
+   #define PACKETVER 20211103
+   ```
 
-```text
-login-server.exe
-char-server.exe
-map-server.exe
-```
+   If it does not exist, add the line **above** the final `#endif /* CONFIG_CUSTOM_DEFINES_PRE_HPP */`, like this:
+
+   ```cpp
+   #define PACKETVER 20211103
+
+   #endif /* CONFIG_CUSTOM_DEFINES_PRE_HPP */
+   ```
+
+   Preserve the existing file contents. Keep only one active `#define PACKETVER` line, without `//` in front of it. Press **Ctrl + S** to save.
+
+3. **Open the solution in Visual Studio**:
+
+   ```text
+   C:\RO-Server\rathena\rAthena.sln
+   ```
+
+4. **Select `Release` → `x64`**. Verify these values in the two dropdowns at the top.
+
+5. **Build the solution**: choose **Build → Build Solution**, or press **Ctrl + Shift + B** (Visual Studio's default shortcut). After changing PACKETVER, a successful build is required to update the executables. If the old servers are still running, close all three server windows before building.
+
+6. **Check the build result** in Visual Studio's **Output** window. The owner's successful build reported:
+
+   ```text
+   15 succeeded, 0 failed
+   ```
+
+   Verify **0 failed** and check for these files in `C:\RO-Server\rathena`:
+
+   ```text
+   login-server.exe
+   char-server.exe
+   map-server.exe
+   ```
+
+   The number of successful projects may differ with another source version.
+
+These are the configuration steps for the current client. The owner's final historical PACKETVER still needs verification; see [01 Check versions](01-versions.md).
+
+References: [rAthena packets.hpp](https://github.com/rathena/rathena/blob/master/src/config/packets.hpp) / [defines_pre.hpp](https://github.com/rathena/rathena/blob/master/src/custom/defines_pre.hpp) / [Visual Studio shortcuts](https://learn.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)
 
 ## 5. Install the database
 

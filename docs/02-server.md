@@ -64,38 +64,76 @@ git rev-parse HEAD
 
 ## 4. 編譯 Server
 
-開啟：
+目前 Client 為 `2021-11-03_Ragexe_patched.exe`，這份教學使用的封包版本是 `20211103`。依序操作：
 
-```text
-C:\RO-Server\rathena\rAthena.sln
-```
+1. **檢查 `src/config/packets.hpp` 的預設版本**。用文字編輯器開啟：
 
-**編譯前先核對 PACKETVER**：目前 Client 為 `2021-11-03_Ragexe_patched.exe`，日期值是 `20211103`。檢查 `src/config/packets.hpp` 及 `src/custom/defines_pre.hpp` 是否有不同的 `PACKETVER` 定義；自訂定義可能覆蓋預設值。你原本 Server 的最終設定仍待核對，請參考 [01 確認版本](01-versions.md)。若修改封包版本，必須重新建置才能生效。
+   ```text
+   C:\RO-Server\rathena\src\config\packets.hpp
+   ```
 
-[設定參考：rAthena packets.hpp](https://github.com/rathena/rathena/blob/master/src/config/packets.hpp)
+   按 **Ctrl + F** 搜尋 `#ifndef PACKETVER`，找到下方的預設定義：
 
-先選擇 **Release → x64**，再用以下任一方式建置：
+   ```cpp
+   #ifndef PACKETVER
+       // 中間有官方說明註解
+       #define PACKETVER 20211103
+   #endif
+   ```
 
-- 選單：上方「建置（B）」→「建置方案」。
-- 快捷鍵：**Ctrl + Shift + B**（同時按下，Visual Studio 預設按鍵）。
+   **這裡只檢查，不修改。** 官方註解指定 Windows 的自訂版本應寫在下一步的 `defines_pre.hpp`；即使這裡顯示其他日期，也在下一步設定。
 
-[快捷鍵參考：Microsoft 官方文件](https://learn.microsoft.com/zh-tw/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)
+2. **在 `src/custom/defines_pre.hpp` 設定 `20211103`**。開啟：
 
-完成後，查看 Visual Studio 下方的「輸出」視窗。
+   ```text
+   C:\RO-Server\rathena\src\custom\defines_pre.hpp
+   ```
 
-你當時成功的建置結果是：
+   按 **Ctrl + F** 搜尋 `#define PACKETVER`。如果已有這行（例如 `20220406`），將日期改成：
 
-```text
-15 成功，0 失敗
-```
+   ```cpp
+   #define PACKETVER 20211103
+   ```
 
-確認 **失敗為 0**，並在 `C:\RO-Server\rathena` 找到以下三個檔案。若使用不同版本的 rAthena，成功專案數可能不同：
+   如果找不到，在檔案最下方的 `#endif /* CONFIG_CUSTOM_DEFINES_PRE_HPP */` **上面**加入這行。位置如下：
 
-```text
-login-server.exe
-char-server.exe
-map-server.exe
-```
+   ```cpp
+   #define PACKETVER 20211103
+
+   #endif /* CONFIG_CUSTOM_DEFINES_PRE_HPP */
+   ```
+
+   保留檔案原有內容；有效的 `#define PACKETVER` 只留一行，前面不要加 `//`。按 **Ctrl + S** 儲存。
+
+3. **用 Visual Studio 開啟方案**：
+
+   ```text
+   C:\RO-Server\rathena\rAthena.sln
+   ```
+
+4. **選擇 `Release` → `x64`**，確認上方兩個下拉選單分別顯示這兩個值。
+
+5. **建置方案**：上方「建置（B）」→「建置方案」，或同時按 **Ctrl + Shift + B**（Visual Studio 預設快捷鍵）。修改 PACKETVER 後，必須建置成功才會更新執行檔；若仍在執行舊的 Server，先關閉三個 Server 視窗再建置。
+
+6. **檢查建置結果**。查看 Visual Studio 下方的「輸出」視窗。你當時成功的結果是：
+
+   ```text
+   15 成功，0 失敗
+   ```
+
+   確認 **失敗為 0**，並在 `C:\RO-Server\rathena` 找到：
+
+   ```text
+   login-server.exe
+   char-server.exe
+   map-server.exe
+   ```
+
+   不同原始碼版本的成功專案數可能不同。
+
+這是配合目前 Client 的設定步驟；你原本 Server 的最終 PACKETVER 仍待核對，詳見 [01 確認版本](01-versions.md)。
+
+參考：[rAthena packets.hpp](https://github.com/rathena/rathena/blob/master/src/config/packets.hpp)／[defines_pre.hpp](https://github.com/rathena/rathena/blob/master/src/custom/defines_pre.hpp)／[Visual Studio 快捷鍵](https://learn.microsoft.com/zh-tw/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)
 
 ## 5. 安裝資料庫
 

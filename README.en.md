@@ -16,23 +16,32 @@ Complete chapters 01–03 in order to build the server, configure the client and
 
 ## 2. Optional extensions
 
-Choose topics as needed. These chapters are separate from the basic setup workflow.
+Choose topics after completing basic setup. Read the backup and account-permission chapters before enabling multiplayer access.
 
 | Chapter | Scope | Status |
 | --- | --- | --- |
-| [01 Third jobs and Eden Group](docs/en/04-third-jobs-eden.md) | Job and Eden Group settings | Pending |
-| [02 OpenKore](docs/en/05-openkore.md) | Connect to your own server | Pending |
-| [03 Experience and drop rates](docs/en/06-server-rates.md) | Experience, item and card drop rates | Pending |
-| [04 Add weapons and armor](docs/en/07-custom-equipment.md) | Server item data and client display resources | Pending |
-| [05 Chinese localization](docs/en/09-localization.md) | Client interface and item descriptions, server NPC dialogue and messages | Pending |
+| [01 Chinese localization](docs/en/09-localization.md) | Client interface, item descriptions, NPC dialogue and system messages | Pending |
+| [02 Third jobs and Eden Group](docs/en/04-third-jobs-eden.md) | Job and Eden Group settings | Pending |
+| [03 Experience and drop rates](docs/en/06-server-rates.md) | Base/Job experience, item and card drop rates | Pending |
+| [04 Game rules](docs/en/optional-game-rules.md) | Level limits, skills, weight and storage capacity | Pending |
+| [05 Account registration](docs/en/optional-account-registration.md) | Player account creation and registration settings | Pending |
+| [06 Multiplayer and external connections](docs/en/optional-multiplayer-network.md) | LAN, IP addresses, firewall and router settings | Pending |
+| [07 NPCs and events](docs/en/optional-npcs-events.md) | Warps, healing, shops and custom events | Pending |
+| [08 Add weapons and armor](docs/en/07-custom-equipment.md) | Server item data and client display resources | Pending |
+| [09 OpenKore](docs/en/05-openkore.md) | Connect to your own server | Pending |
 
 ## 3. Administration and command reference
 
-After setup, refer to these guides for server administration and in-game commands.
+Organized around daily operation, data protection, troubleshooting, GM tools and version maintenance.
 
 | Chapter | Scope | Status |
 | --- | --- | --- |
-| [01 GM commands](docs/en/08-gm-commands.md) | Common examples, complete built-in commands and aliases, permissions and parameters | ✅ |
+| [01 Startup, shutdown and reload](docs/en/admin-server-lifecycle.md) | Startup/shutdown order, reloads and when to rebuild | Pending |
+| [02 Backup and restore](docs/en/admin-backup-restore.md) | Database, server configuration and client backup/restore | Pending |
+| [03 Troubleshooting](docs/en/admin-troubleshooting.md) | Warnings/errors, login failures and missing GRFs | Pending |
+| [04 GM commands](docs/en/08-gm-commands.md) | Common examples, built-in commands, aliases, permissions and parameters | ✅ |
+| [05 Player accounts and GM permissions](docs/en/admin-accounts-permissions.md) | Permission groups, account suspension and reinstatement | Pending |
+| [06 Server updates and version management](docs/en/admin-updates-versions.md) | Version tracking, pre-update backup and rollback | Pending |
 
 ## References
 

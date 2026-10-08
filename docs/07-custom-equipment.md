@@ -1,4 +1,4 @@
-# 04 新增武器與防具
+# 08 新增武器與防具
 
 繁體中文 | [English](en/07-custom-equipment.md)
 

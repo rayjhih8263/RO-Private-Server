@@ -1,4 +1,4 @@
-# 02 OpenKore
+# 09 OpenKore
 
 繁體中文 | [English](en/05-openkore.md)
 

@@ -126,7 +126,22 @@ Completion checks:
 
 Back up the entire client folder, including GRFs, configuration files and resource folders.
 
-[Next: Third jobs and Eden Group](04-third-jobs-eden.md) | [Back to the index](../../README.en.md)
+## 8. Start playing
+
+Once you enter a map successfully, you can explore, fight monsters and experience the game.
+
+**Congratulations! You have completed the basic RO server and client setup and can start playing on your own server!**
+
+Choose optional customization topics as needed. Each chapter can be read independently:
+
+- [04 Third jobs and Eden Group](04-third-jobs-eden.md)
+- [05 OpenKore](05-openkore.md)
+- [06 Experience and drop rates](06-server-rates.md)
+- [07 Add weapons and armor](07-custom-equipment.md)
+
+These extension chapters are pending. You can start playing after completing the basic setup.
+
+[Back to the index](../../README.en.md)
 
 ## License and use
 

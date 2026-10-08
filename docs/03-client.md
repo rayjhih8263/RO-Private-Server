@@ -126,7 +126,22 @@ C:\RO-Server\RO-Client\data\sclientinfo.xml
 
 保留整個 Client 資料夾作為備份，包含 GRF、設定檔與資源資料夾。
 
-[下一步：三轉與伊甸園](04-third-jobs-eden.md)｜[回首頁](../README.md)
+## 8. 開始遊戲
+
+成功進入地圖後，就可以開始探索、打怪與體驗遊戲。
+
+**恭喜！你已完成 RO Server 與 Client 的基本架設，可以在自己的伺服器中開始遊戲了！**
+
+接下來可依需求選擇延伸設定，各章節可獨立閱讀：
+
+- [04 三轉與伊甸園](04-third-jobs-eden.md)
+- [05 OpenKore](05-openkore.md)
+- [06 經驗與掉寶倍率](06-server-rates.md)
+- [07 新增武器與防具](07-custom-equipment.md)
+
+延伸章節尚待補充，完成基本架設後即可開始遊戲。
+
+[回首頁](../README.md)
 
 ## 教學內容授權
 

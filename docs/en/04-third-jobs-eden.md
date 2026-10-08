@@ -2,9 +2,11 @@
 
 [繁體中文](../04-third-jobs-eden.md) | English
 
+This is an optional extension after basic setup; it is separate from chapters 01–03.
+
 Not completed yet. Correct setup steps will be added after configuration and successful testing.
 
-[Next: OpenKore](05-openkore.md)
+[Back to the index: optional extensions](../../README.en.md#optional-extensions)
 
 ## License and use
 

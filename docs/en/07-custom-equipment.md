@@ -1,12 +1,14 @@
-# 05 OpenKore
+# 07 Add weapons and armor
 
-[繁體中文](../05-openkore.md) | English
+[繁體中文](../07-custom-equipment.md) | English
 
 This is an optional extension after basic setup; it is separate from chapters 01–03.
 
-Not completed yet. Correct steps will be added after connecting to your own server and successfully entering a map.
+This chapter will cover server item data, weapon and armor attributes, and client item names, icons and display resources, with configuration and verification steps.
 
-[Back to the English index](../../README.en.md)
+**Detailed instructions are pending.**
+
+[Back to the index: optional extensions](../../README.en.md#optional-extensions)
 
 ## License and use
 

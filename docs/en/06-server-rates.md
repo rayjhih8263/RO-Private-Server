@@ -1,12 +1,14 @@
-# 05 OpenKore
+# 06 Experience and drop rates
 
-[繁體中文](../05-openkore.md) | English
+[繁體中文](../06-server-rates.md) | English
 
 This is an optional extension after basic setup; it is separate from chapters 01–03.
 
-Not completed yet. Correct steps will be added after connecting to your own server and successfully entering a map.
+This chapter will cover Base EXP, Job EXP, regular item drop rates and card drop rates, with configuration and verification steps.
 
-[Back to the English index](../../README.en.md)
+**Detailed instructions are pending.**
+
+[Back to the index: optional extensions](../../README.en.md#optional-extensions)
 
 ## License and use
 

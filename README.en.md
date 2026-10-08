@@ -4,15 +4,24 @@
 
 A Windows setup guide for learning and noncommercial technical exchange.
 
-Follow the chapters in order:
+## Basic setup
+
+Complete chapters 01–03 in order to build the server, configure the client and start playing.
 
 1. [Check versions](docs/en/01-versions.md)
 2. [Set up the server](docs/en/02-server.md)
 3. [Set up the RO client](docs/en/03-client.md)
-4. [Third jobs and Eden Group](docs/en/04-third-jobs-eden.md)
-5. [OpenKore](docs/en/05-openkore.md)
 
-The guide covers version checks, server compilation and database setup, client resources and local connection settings. Third jobs, Eden Group and OpenKore chapters are pending.
+## Optional extensions
+
+Choose topics as needed. These chapters are separate from the basic setup workflow.
+
+| Chapter | Scope | Status |
+| --- | --- | --- |
+| [04 Third jobs and Eden Group](docs/en/04-third-jobs-eden.md) | Job and Eden Group settings | Pending |
+| [05 OpenKore](docs/en/05-openkore.md) | Connect to your own server | Pending |
+| [06 Experience and drop rates](docs/en/06-server-rates.md) | Experience, item and card drop rates | Pending |
+| [07 Add weapons and armor](docs/en/07-custom-equipment.md) | Server item data and client display resources | Pending |
 
 ## References
 

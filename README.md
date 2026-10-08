@@ -2,16 +2,24 @@
 
 繁體中文 | [English](README.en.md)
 
-按順序點開，照步驟做即可。
+## 基本架設
+
+依序完成 01～03，即可建立 Server、設定 Client 並開始遊戲。
 
 1. [確認版本](docs/01-versions.md)
 2. [建立 Server](docs/02-server.md)
 3. [建立 RO Client](docs/03-client.md)
-4. [三轉與伊甸園](docs/04-third-jobs-eden.md)
-5. [OpenKore](docs/05-openkore.md)
 
-教學包含版本確認、Server 編譯與資料庫設定，以及 Client 資源與本機連線設定。三轉、伊甸園與 OpenKore 章節尚待補充。
+## 延伸設定（可選）
 
+依需求選擇，各章節獨立於基本架設流程：
+
+| 章節 | 內容 | 狀態 |
+| --- | --- | --- |
+| [04 三轉與伊甸園](docs/04-third-jobs-eden.md) | 職業與伊甸園相關設定 | 待補充 |
+| [05 OpenKore](docs/05-openkore.md) | 連接自己的 Server | 待補充 |
+| [06 經驗與掉寶倍率](docs/06-server-rates.md) | 經驗、掉寶及卡片倍率 | 待補充 |
+| [07 新增武器與防具](docs/07-custom-equipment.md) | Server 道具資料與 Client 顯示資源 | 待補充 |
 
 ## 參考來源
 

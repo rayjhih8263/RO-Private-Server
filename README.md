@@ -6,9 +6,11 @@
 
 依序完成 01～03，即可建立 Server、設定 Client 並開始遊戲。
 
-1. [確認版本](docs/01-versions.md)
-2. [建立 Server](docs/02-server.md)
-3. [建立 RO Client](docs/03-client.md)
+| 章節 | 內容 | 狀態 |
+| --- | --- | --- |
+| [01 確認版本](docs/01-versions.md) | Server、RO Client 與安裝工具版本 | ✅ |
+| [02 建立 Server](docs/02-server.md) | 安裝工具、編譯、資料庫與 GM 帳號設定 | ✅ |
+| [03 建立 RO Client](docs/03-client.md) | 下載 Client、補齊 GRF、連線並開始遊戲 | ✅ |
 
 ## 延伸設定（可選）
 

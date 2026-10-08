@@ -8,9 +8,11 @@ A Windows setup guide for learning and noncommercial technical exchange.
 
 Complete chapters 01–03 in order to build the server, configure the client and start playing.
 
-1. [Check versions](docs/en/01-versions.md)
-2. [Set up the server](docs/en/02-server.md)
-3. [Set up the RO client](docs/en/03-client.md)
+| Chapter | Scope | Status |
+| --- | --- | --- |
+| [01 Check versions](docs/en/01-versions.md) | Server, RO client and setup tool versions | ✅ |
+| [02 Set up the server](docs/en/02-server.md) | Install tools, build, configure databases and create a GM account | ✅ |
+| [03 Set up the RO client](docs/en/03-client.md) | Download the client, complete GRFs, connect and start playing | ✅ |
 
 ## Optional extensions
 

@@ -152,7 +152,7 @@ Download-page reference:
 During installation:
 
 - **Service Name**: customizable, for example `MariaDB` or `RODatabase`. This identifies the service in Windows Services; it is separate from the in-game server name and database username.
-- **TCP port: 3306**: the usual default port for MariaDB/MySQL. Keeping it makes the later connection settings consistent. If you change it, update all database ports in step 8 as well. If another database already uses 3306, choose an unused port.
+- **TCP port: 3306**: the usual default port for MariaDB/MySQL. Keeping it makes the later connection settings consistent. If you change it, update all database ports in step 9 as well. If another database already uses 3306, choose an unused port.
 - Set your own root password.
 - Select **Install as service** and **Enable networking**.
 
@@ -180,7 +180,7 @@ These screenshots identify the fields and show MariaDB 10.6. Customize the servi
 
 Open **MySQL Client (MariaDB)** and enter the root password set during installation. This administrator password serves a different purpose from the database password used by rAthena below.
 
-Check the actual installed version and port first. If the port is different from 3306, use the reported value in step 8:
+Check the actual installed version and port first. If the port is different from 3306, use the reported value in step 9:
 
 ```sql
 SELECT VERSION(), @@port;
@@ -222,55 +222,7 @@ Reference table counts: **56** in `ragnarok` and **10** in `ragnarok_log`. Count
 
 Completion check: `ragnarok` contains tables such as `login` and `char`; `ragnarok_log` contains `loginlog`; and the import reports no `ERROR`. If a file cannot be opened, check its `SOURCE` path.
 
-## 8. Configure the database connection
-
-Open:
-
-```text
-C:\RO-Server\rathena\conf\inter_athena.conf
-```
-
-Update all **six groups of connection fields**, including the easily missed `ipban_db` group:
-
-| IP | Port | Account | Password | Database | Value |
-| --- | --- | --- | --- | --- | --- |
-| `login_server_ip` | `login_server_port` | `login_server_id` | `login_server_pw` | `login_server_db` | `ragnarok` |
-| `ipban_db_ip` | `ipban_db_port` | `ipban_db_id` | `ipban_db_pw` | `ipban_db_db` | `ragnarok` |
-| `char_server_ip` | `char_server_port` | `char_server_id` | `char_server_pw` | `char_server_db` | `ragnarok` |
-| `map_server_ip` | `map_server_port` | `map_server_id` | `map_server_pw` | `map_server_db` | `ragnarok` |
-| `web_server_ip` | `web_server_port` | `web_server_id` | `web_server_pw` | `web_server_db` | `ragnarok` |
-| `log_db_ip` | `log_db_port` | `log_db_id` | `log_db_pw` | `log_db_db` | `ragnarok_log` |
-
-In each group, set the IP to `127.0.0.1`, the port to the value from step 5 (default `3306`), and the username/password to those chosen in step 6. Set each database name according to the table. Keep `log_login_db: loginlog`.
-
-**Check overrides**: `inter_athena.conf` loads `conf/import/inter_conf.txt` at the end. If that file already contains the same settings, edit them there so they do not override your main-file changes. New custom settings can also be placed in this import file. Save and restart the server.
-
-[Field reference: rAthena inter_athena.conf](https://github.com/rathena/rathena/blob/master/conf/inter_athena.conf)
-
-Database credentials differ from the credentials used between servers. The `userid`/`passwd` values in `char_athena.conf` and `map_athena.conf` correspond to the server account with `sex = 'S'` in `ragnarok.login`; **do not replace them with the database username from step 6**. This chapter covers local testing only. Before allowing external connections, replace the default inter-server credentials and update both the matching configuration and database row.
-
-Save the file.
-
-## 9. Start the server
-
-Run in this order:
-
-```text
-login-server.exe
-char-server.exe
-map-server.exe
-```
-
-Successful startup indicators:
-
-- Login: ready, port 6900
-- Char: ready, port 6121
-- Map: online, port 5121
-- No database connection errors
-
-**Completion check: all three servers remain running without database or inter-server connection errors.** This passes the startup check for this chapter; a game login still requires the client setup in the next chapter.
-
-## 10. Create a GameMaster (GM) account
+## 8. Create a GameMaster (GM) account
 
 A GM is a game administrator account, separate from the database account in step 6.
 
@@ -316,6 +268,54 @@ A GM is a game administrator account, separate from the database account in step
    After completing [03 Set up the RO client](03-client.md), sign in using this **GM game username and password**. Log out and back in if permissions were changed while the account was logged in.
 
 References: [rAthena login table](https://github.com/rathena/rathena/blob/master/sql-files/main.sql) / [Password settings](https://github.com/rathena/rathena/blob/master/conf/login_athena.conf) / [Administrator group](https://github.com/rathena/rathena/blob/master/conf/groups.yml)
+
+## 9. Configure the database connection
+
+Open:
+
+```text
+C:\RO-Server\rathena\conf\inter_athena.conf
+```
+
+Update all **six groups of connection fields**, including the easily missed `ipban_db` group:
+
+| IP | Port | Account | Password | Database | Value |
+| --- | --- | --- | --- | --- | --- |
+| `login_server_ip` | `login_server_port` | `login_server_id` | `login_server_pw` | `login_server_db` | `ragnarok` |
+| `ipban_db_ip` | `ipban_db_port` | `ipban_db_id` | `ipban_db_pw` | `ipban_db_db` | `ragnarok` |
+| `char_server_ip` | `char_server_port` | `char_server_id` | `char_server_pw` | `char_server_db` | `ragnarok` |
+| `map_server_ip` | `map_server_port` | `map_server_id` | `map_server_pw` | `map_server_db` | `ragnarok` |
+| `web_server_ip` | `web_server_port` | `web_server_id` | `web_server_pw` | `web_server_db` | `ragnarok` |
+| `log_db_ip` | `log_db_port` | `log_db_id` | `log_db_pw` | `log_db_db` | `ragnarok_log` |
+
+In each group, set the IP to `127.0.0.1`, the port to the value from step 5 (default `3306`), and the username/password to those chosen in step 6. Set each database name according to the table. Keep `log_login_db: loginlog`.
+
+**Check overrides**: `inter_athena.conf` loads `conf/import/inter_conf.txt` at the end. If that file already contains the same settings, edit them there so they do not override your main-file changes. New custom settings can also be placed in this import file. Save and restart the server.
+
+[Field reference: rAthena inter_athena.conf](https://github.com/rathena/rathena/blob/master/conf/inter_athena.conf)
+
+Database credentials differ from the credentials used between servers. The `userid`/`passwd` values in `char_athena.conf` and `map_athena.conf` correspond to the server account with `sex = 'S'` in `ragnarok.login`; **do not replace them with the database username from step 6**. This chapter covers local testing only. Before allowing external connections, replace the default inter-server credentials and update both the matching configuration and database row.
+
+Save the file.
+
+## 10. Start the server
+
+Run in this order:
+
+```text
+login-server.exe
+char-server.exe
+map-server.exe
+```
+
+Successful startup indicators:
+
+- Login: ready, port 6900
+- Char: ready, port 6121
+- Map: online, port 5121
+- No database connection errors
+
+**Completion check: all three servers remain running without database or inter-server connection errors.** This passes the startup check for this chapter; a game login still requires the client setup in the next chapter.
 
 [Next: Set up the RO client](03-client.md)
 

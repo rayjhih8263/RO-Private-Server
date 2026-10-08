@@ -152,7 +152,7 @@ git rev-parse HEAD
 安裝時設定：
 
 - **Service Name（Windows 服務名稱）**：可以自訂，例如 `MariaDB` 或 `RODatabase`。這是 Windows「服務」中的名稱，不是遊戲內的 Server 名稱，也不是資料庫帳號。
-- **TCP port：3306**：MariaDB／MySQL 慣用的預設連接埠，保持預設能讓後面的連線設定一致。可以改，但步驟 8 的所有資料庫 Port 都要一起改；若 3306 已被其他資料庫占用，可另選未使用的 Port。
+- **TCP port：3306**：MariaDB／MySQL 慣用的預設連接埠，保持預設能讓後面的連線設定一致。可以改，但步驟 9 的所有資料庫 Port 都要一起改；若 3306 已被其他資料庫占用，可另選未使用的 Port。
 - 設定自己的 root 密碼
 - 勾選 Install as service、Enable networking
 
@@ -180,7 +180,7 @@ git rev-parse HEAD
 
 開啟 **MySQL Client (MariaDB)**，輸入安裝時設定的 root 密碼。這個管理員密碼與下面供 rAthena 使用的資料庫密碼是兩個不同用途的密碼。
 
-先輸入以下指令核對實際版本與 Port；若 Port 不是 3306，步驟 8 要使用這裡顯示的值：
+先輸入以下指令核對實際版本與 Port；若 Port 不是 3306，步驟 9 要使用這裡顯示的值：
 
 ```sql
 SELECT VERSION(), @@port;
@@ -222,55 +222,7 @@ SHOW TABLES;
 
 完成確認：`ragnarok` 中能看到 `login`、`char` 等資料表；`ragnarok_log` 中能看到 `loginlog`，且匯入過程沒有 `ERROR`。如果顯示無法開啟檔案，先檢查 `SOURCE` 路徑。
 
-## 8. 設定資料庫連線
-
-開啟：
-
-```text
-C:\RO-Server\rathena\conf\inter_athena.conf
-```
-
-修改檔案中以下 **6 組連線欄位**，包括容易漏掉的 `ipban_db`：
-
-| IP 欄位 | Port 欄位 | 帳號欄位 | 密碼欄位 | 資料庫欄位 | 資料庫名稱 |
-| --- | --- | --- | --- | --- | --- |
-| `login_server_ip` | `login_server_port` | `login_server_id` | `login_server_pw` | `login_server_db` | `ragnarok` |
-| `ipban_db_ip` | `ipban_db_port` | `ipban_db_id` | `ipban_db_pw` | `ipban_db_db` | `ragnarok` |
-| `char_server_ip` | `char_server_port` | `char_server_id` | `char_server_pw` | `char_server_db` | `ragnarok` |
-| `map_server_ip` | `map_server_port` | `map_server_id` | `map_server_pw` | `map_server_db` | `ragnarok` |
-| `web_server_ip` | `web_server_port` | `web_server_id` | `web_server_pw` | `web_server_db` | `ragnarok` |
-| `log_db_ip` | `log_db_port` | `log_db_id` | `log_db_pw` | `log_db_db` | `ragnarok_log` |
-
-每一組的 IP 都填 `127.0.0.1`，Port 都填步驟 5 的值（預設 `3306`），帳號與密碼都填步驟 6 自訂的值。只有資料庫名稱依表格分別填入。另保持 `log_login_db: loginlog`。
-
-**檢查覆蓋設定**：`inter_athena.conf` 最後會載入 `conf/import/inter_conf.txt`。若該檔已有相同欄位，請在該檔修改，避免主設定被覆蓋；全新設定也可將自訂欄位放在這個 import 檔中。儲存後重新啟動 Server。
-
-[欄位名稱參考：rAthena inter_athena.conf](https://github.com/rathena/rathena/blob/master/conf/inter_athena.conf)
-
-資料庫帳號與 Server 之間的連線帳號是不同的：`char_athena.conf`、`map_athena.conf` 的 `userid`／`passwd` 對應 `ragnarok.login` 中 `sex = 'S'` 的 Server 帳號，**不要直接填成步驟 6 的資料庫帳號**。本章僅本機測試；日後開放外部連線前，須更換預設 Server 連線帳密，並同步修改對應設定及資料列。
-
-儲存檔案。
-
-## 9. 啟動 Server
-
-依序開啟：
-
-```text
-login-server.exe
-char-server.exe
-map-server.exe
-```
-
-看到以下結果代表啟動成功：
-
-- Login：ready，Port 6900
-- Char：ready，Port 6121
-- Map：online，Port 5121
-- 沒有資料庫連線錯誤
-
-**完成確認：三個 Server 保持執行，沒有資料庫或 Server 間連線錯誤。** 這代表本章的啟動檢查通過；能否登入遊戲，還需要完成下一章 Client 設定。
-
-## 10. 建立 GameMaster（GM）帳號
+## 8. 建立 GameMaster（GM）帳號
 
 GM 是遊戲管理員帳號，與步驟 6 的資料庫帳號不同。
 
@@ -316,6 +268,54 @@ GM 是遊戲管理員帳號，與步驟 6 的資料庫帳號不同。
    完成 [03 建立 RO Client](03-client.md) 後，使用這組 **GM 遊戲帳號與密碼**登入。帳號已登入時若修改權限，請登出後重新登入。
 
 參考：[rAthena login 資料表](https://github.com/rathena/rathena/blob/master/sql-files/main.sql)／[密碼設定](https://github.com/rathena/rathena/blob/master/conf/login_athena.conf)／[管理員群組](https://github.com/rathena/rathena/blob/master/conf/groups.yml)
+
+## 9. 設定資料庫連線
+
+開啟：
+
+```text
+C:\RO-Server\rathena\conf\inter_athena.conf
+```
+
+修改檔案中以下 **6 組連線欄位**，包括容易漏掉的 `ipban_db`：
+
+| IP 欄位 | Port 欄位 | 帳號欄位 | 密碼欄位 | 資料庫欄位 | 資料庫名稱 |
+| --- | --- | --- | --- | --- | --- |
+| `login_server_ip` | `login_server_port` | `login_server_id` | `login_server_pw` | `login_server_db` | `ragnarok` |
+| `ipban_db_ip` | `ipban_db_port` | `ipban_db_id` | `ipban_db_pw` | `ipban_db_db` | `ragnarok` |
+| `char_server_ip` | `char_server_port` | `char_server_id` | `char_server_pw` | `char_server_db` | `ragnarok` |
+| `map_server_ip` | `map_server_port` | `map_server_id` | `map_server_pw` | `map_server_db` | `ragnarok` |
+| `web_server_ip` | `web_server_port` | `web_server_id` | `web_server_pw` | `web_server_db` | `ragnarok` |
+| `log_db_ip` | `log_db_port` | `log_db_id` | `log_db_pw` | `log_db_db` | `ragnarok_log` |
+
+每一組的 IP 都填 `127.0.0.1`，Port 都填步驟 5 的值（預設 `3306`），帳號與密碼都填步驟 6 自訂的值。只有資料庫名稱依表格分別填入。另保持 `log_login_db: loginlog`。
+
+**檢查覆蓋設定**：`inter_athena.conf` 最後會載入 `conf/import/inter_conf.txt`。若該檔已有相同欄位，請在該檔修改，避免主設定被覆蓋；全新設定也可將自訂欄位放在這個 import 檔中。儲存後重新啟動 Server。
+
+[欄位名稱參考：rAthena inter_athena.conf](https://github.com/rathena/rathena/blob/master/conf/inter_athena.conf)
+
+資料庫帳號與 Server 之間的連線帳號是不同的：`char_athena.conf`、`map_athena.conf` 的 `userid`／`passwd` 對應 `ragnarok.login` 中 `sex = 'S'` 的 Server 帳號，**不要直接填成步驟 6 的資料庫帳號**。本章僅本機測試；日後開放外部連線前，須更換預設 Server 連線帳密，並同步修改對應設定及資料列。
+
+儲存檔案。
+
+## 10. 啟動 Server
+
+依序開啟：
+
+```text
+login-server.exe
+char-server.exe
+map-server.exe
+```
+
+看到以下結果代表啟動成功：
+
+- Login：ready，Port 6900
+- Char：ready，Port 6121
+- Map：online，Port 5121
+- 沒有資料庫連線錯誤
+
+**完成確認：三個 Server 保持執行，沒有資料庫或 Server 間連線錯誤。** 這代表本章的啟動檢查通過；能否登入遊戲，還需要完成下一章 Client 設定。
 
 [下一步：建立 RO Client](03-client.md)
 

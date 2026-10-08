@@ -2,7 +2,7 @@
 
 繁體中文 | [English](en/01-versions.md)
 
-已確認的版本與設定：
+本教學使用的版本與設定：
 
 | 項目 | 版本或設定 | 參考網址 |
 | --- | --- | --- |
@@ -11,7 +11,7 @@
 | RO Client | ROClientFullCN | [ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN) |
 | 目前登入器 | 2021-11-03_Ragexe_patched.exe | 同上 |
 | GRF 資源 | 手動個別下載，再複製到 Client 資料夾 | 同上 |
-| Server PACKETVER | 曾設為 20220406；目前值待核對 | 2021-11-03 Client 的日期值為 20211103 |
+| Server PACKETVER | **20211103（依目前 Client 設定）** | [02 編譯 Server](02-server.md#4-編譯-server)／[rAthena 設定說明](https://github.com/rathena/rathena/blob/master/src/config/packets.hpp) |
 | 編譯工具 | Visual Studio Community 2026 | [Visual Studio Community](https://visualstudio.microsoft.com/zh-hant/vs/community/) |
 | 編譯設定 | Release / x64 | — |
 | 資料庫 | MariaDB 11.8.9 | [MariaDB 下載頁](https://mariadb.org/download/) |
@@ -23,6 +23,18 @@
 ```
 
 這是你在 2026-10-03 重新查閱對話後確認，目前使用的登入器。
+
+## 編譯前確認
+
+Client 日期為 **2021-11-03**，所以本教學在 `src/custom/defines_pre.hpp` 設定：
+
+```cpp
+#define PACKETVER 20211103
+```
+
+設定位置、儲存與建置順序，請照 [02 建立 Server → 4. 編譯 Server](02-server.md#4-編譯-server) 操作。
+
+原始對話曾測試 `20220406`；原電腦最後實際使用的值尚未讀取確認，因此表中 `20211103` 是本教學的設定值，不代表已確認原電腦完成修改。
 
 下載頁可能顯示最新版，請依表中版本核對。
 

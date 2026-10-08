@@ -20,11 +20,11 @@ Choose topics as needed. These chapters are separate from the basic setup workfl
 
 | Chapter | Scope | Status |
 | --- | --- | --- |
-| [04 Third jobs and Eden Group](docs/en/04-third-jobs-eden.md) | Job and Eden Group settings | Pending |
-| [05 OpenKore](docs/en/05-openkore.md) | Connect to your own server | Pending |
-| [06 Experience and drop rates](docs/en/06-server-rates.md) | Experience, item and card drop rates | Pending |
-| [07 Add weapons and armor](docs/en/07-custom-equipment.md) | Server item data and client display resources | Pending |
-| [09 Chinese localization](docs/en/09-localization.md) | Client interface and item descriptions, server NPC dialogue and messages | Pending |
+| [01 Third jobs and Eden Group](docs/en/04-third-jobs-eden.md) | Job and Eden Group settings | Pending |
+| [02 OpenKore](docs/en/05-openkore.md) | Connect to your own server | Pending |
+| [03 Experience and drop rates](docs/en/06-server-rates.md) | Experience, item and card drop rates | Pending |
+| [04 Add weapons and armor](docs/en/07-custom-equipment.md) | Server item data and client display resources | Pending |
+| [05 Chinese localization](docs/en/09-localization.md) | Client interface and item descriptions, server NPC dialogue and messages | Pending |
 
 ## 3. Administration and command reference
 
@@ -32,7 +32,7 @@ After setup, refer to these guides for server administration and in-game command
 
 | Chapter | Scope | Status |
 | --- | --- | --- |
-| [08 GM commands](docs/en/08-gm-commands.md) | Common examples, complete built-in commands and aliases, permissions and parameters | ✅ |
+| [01 GM commands](docs/en/08-gm-commands.md) | Common examples, complete built-in commands and aliases, permissions and parameters | ✅ |
 
 ## References
 

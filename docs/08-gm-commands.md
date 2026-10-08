@@ -1,4 +1,4 @@
-# 08 GM 指令手冊
+# 01 GM 指令手冊
 
 繁體中文 | [English](en/08-gm-commands.md) | [回目錄](../README.md)
 

@@ -1,4 +1,4 @@
-# 08 GM command guide
+# 01 GM command guide
 
 [繁體中文](../08-gm-commands.md) | English | [Index](../../README.en.md)
 

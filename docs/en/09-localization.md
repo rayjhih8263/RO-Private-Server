@@ -1,4 +1,4 @@
-# 09 Chinese localization
+# 05 Chinese localization
 
 [繁體中文](../09-localization.md) | English | [Index](../../README.en.md)
 

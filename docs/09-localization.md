@@ -1,4 +1,4 @@
-# 09 中文化
+# 05 中文化
 
 繁體中文 | [English](en/09-localization.md) | [回目錄](../README.md)
 

@@ -1,4 +1,4 @@
-# 06 Experience and drop rates
+# 03 Experience and drop rates
 
 [繁體中文](../06-server-rates.md) | English
 

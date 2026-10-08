@@ -1,4 +1,4 @@
-# 07 Add weapons and armor
+# 04 Add weapons and armor
 
 [繁體中文](../07-custom-equipment.md) | English
 

@@ -1,4 +1,4 @@
-# 06 經驗與掉寶倍率
+# 03 經驗與掉寶倍率
 
 繁體中文 | [English](en/06-server-rates.md)
 

@@ -12,4 +12,4 @@ Original teaching text and original diagrams, to the extent the author holds cop
 
 You may share and adapt this material for noncommercial purposes. Credit **rayjhih8263**, link to this repository and the license, and indicate changes. Shared adaptations must use the same license. Commercial use, including selling bundles, paid downloads, or inclusion in paid teaching materials, requires separate permission from the rights holder.
 
-Third-party software, game assets, trademarks, screenshots and images are excluded from this license and remain subject to their respective rights and licenses. This is an unofficial personal learning record. Attribution and an educational purpose do not replace permission. See [the license notice](../../LICENSE.md).
+Third-party software, game assets, trademarks, screenshots and images are excluded from this license and remain subject to their respective rights and licenses. This is an unofficial educational guide. Attribution and an educational purpose do not replace permission. See [the license notice](../../LICENSE.md).

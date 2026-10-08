@@ -7,7 +7,7 @@ Versions and settings used in this guide:
 | Item | Version or setting | Reference |
 | --- | --- | --- |
 | Operating system | Windows 11 | — |
-| Server | rAthena; source commit not recorded | [rAthena](https://github.com/rathena/rathena) |
+| Server | rAthena; record the downloaded commit | [rAthena](https://github.com/rathena/rathena) |
 | RO Client | ROClientFullCN | [ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN) |
 | Current client executable | 2021-11-03_Ragexe_patched.exe | Same source |
 | GRF resources | Downloaded individually by hand, then copied into the client folder | Same source |
@@ -22,7 +22,7 @@ Versions and settings used in this guide:
 2021-11-03_Ragexe_patched.exe
 ```
 
-The owner confirmed this as the current executable after reviewing the setup conversation on October 3, 2026.
+This guide uses this client executable as its configuration example.
 
 ## Before building
 
@@ -34,7 +34,7 @@ The client date is **November 3, 2021**, so this guide sets the following in `sr
 
 Follow [02 Set up the server → 4. Build the server](02-server.md#4-build-the-server) for the exact position, saving and build sequence.
 
-The original conversation included testing with `20220406`. The final value on the original computer has not been read and verified. Therefore, `20211103` in the table is this guide's configuration target, not confirmation that the original computer has already been changed.
+Verify that your actual client date matches the server's `PACKETVER`. If using a different client, check the settings again and rebuild.
 
 Download pages may show newer releases. Check against the versions above.
 
@@ -46,4 +46,4 @@ Original teaching text and original diagrams, to the extent the author holds cop
 
 You may share and adapt this material for noncommercial purposes. Credit **rayjhih8263**, link to this repository and the license, and indicate changes. Shared adaptations must use the same license. Commercial use, including selling bundles, paid downloads, or inclusion in paid teaching materials, requires separate permission from the rights holder.
 
-Third-party software, game assets, trademarks, screenshots and images are excluded from this license and remain subject to their respective rights and licenses. This is an unofficial personal learning record. Attribution and an educational purpose do not replace permission. See [the license notice](../../LICENSE.md).
+Third-party software, game assets, trademarks, screenshots and images are excluded from this license and remain subject to their respective rights and licenses. This is an unofficial educational guide. Attribution and an educational purpose do not replace permission. See [the license notice](../../LICENSE.md).

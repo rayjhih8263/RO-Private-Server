@@ -7,7 +7,7 @@
 | 項目 | 版本或設定 | 參考網址 |
 | --- | --- | --- |
 | 電腦 | Windows 11 | — |
-| Server | rAthena（原始碼版本未記錄） | [rAthena 原始碼](https://github.com/rathena/rathena) |
+| Server | rAthena（請記錄下載的 commit） | [rAthena 原始碼](https://github.com/rathena/rathena) |
 | RO Client | ROClientFullCN | [ROClientFullCN](https://github.com/rAthenaCN/ROClientFullCN) |
 | 目前登入器 | 2021-11-03_Ragexe_patched.exe | 同上 |
 | GRF 資源 | 手動個別下載，再複製到 Client 資料夾 | 同上 |
@@ -22,7 +22,7 @@
 2021-11-03_Ragexe_patched.exe
 ```
 
-這是你在 2026-10-03 重新查閱對話後確認，目前使用的登入器。
+本教學以此 Client 執行檔為設定範例。
 
 ## 編譯前確認
 
@@ -34,7 +34,7 @@ Client 日期為 **2021-11-03**，所以本教學在 `src/custom/defines_pre.hpp
 
 設定位置、儲存與建置順序，請照 [02 建立 Server → 4. 編譯 Server](02-server.md#4-編譯-server) 操作。
 
-原始對話曾測試 `20220406`；原電腦最後實際使用的值尚未讀取確認，因此表中 `20211103` 是本教學的設定值，不代表已確認原電腦完成修改。
+請確認實際使用的 Client 日期與 Server 的 `PACKETVER` 一致；使用不同 Client 時，需重新核對設定並建置。
 
 下載頁可能顯示最新版，請依表中版本核對。
 

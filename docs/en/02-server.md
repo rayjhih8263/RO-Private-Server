@@ -2,8 +2,6 @@
 
 [繁體中文](../02-server.md) | English
 
-The main workflow has been cross-checked against the successful steps in the original setup conversation. Recording the source commit, checking PACKETVER before building, checking configuration overrides and the reminder before external access are added review checks, not claims that each was completed during the original setup.
-
 Follow the steps in order. This chapter assumes **the client and server are tested on the same Windows computer**. The database commands below are intended for a fresh, empty database.
 
 ## 1. Install Git
@@ -51,7 +49,7 @@ The source will be in:
 C:\RO-Server\rathena
 ```
 
-Use the previously saved source to reproduce the original successful version. The command above downloads the current version.
+The command above downloads the current version. Keep the source or record its commit to use the same version on another computer.
 
 Completion check: `rAthena.sln` exists in the folder. After downloading, run the following in Git Bash and record the commit hash so you can reproduce the same source version later:
 
@@ -115,7 +113,7 @@ The current client is `2021-11-03_Ragexe_patched.exe`. This guide uses packet ve
 
 5. **Build the solution**: choose **Build → Build Solution**, or press **Ctrl + Shift + B** (Visual Studio's default shortcut). After changing PACKETVER, a successful build is required to update the executables. If the old servers are still running, close all three server windows before building.
 
-6. **Check the build result** in Visual Studio's **Output** window. The owner's successful build reported:
+6. **Check the build result** in Visual Studio's **Output** window. Example of a successful build output:
 
    ```text
    15 succeeded, 0 failed
@@ -131,7 +129,7 @@ The current client is `2021-11-03_Ragexe_patched.exe`. This guide uses packet ve
 
    The number of successful projects may differ with another source version.
 
-These are the configuration steps for the current client. The owner's final historical PACKETVER still needs verification; see [01 Check versions](01-versions.md).
+Verify that the client date matches `PACKETVER`; see [01 Check versions](01-versions.md) for the version table.
 
 References: [rAthena packets.hpp](https://github.com/rathena/rathena/blob/master/src/config/packets.hpp) / [defines_pre.hpp](https://github.com/rathena/rathena/blob/master/src/custom/defines_pre.hpp) / [Visual Studio shortcuts](https://learn.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)
 
@@ -139,7 +137,7 @@ References: [rAthena packets.hpp](https://github.com/rathena/rathena/blob/master
 
 Download: [MariaDB Server](https://mariadb.org/download/).
 
-Recorded version: **11.8.9**. Select:
+Version used in this guide: **11.8.9**. Select:
 
 1. MariaDB Server Version: **11.8.9**.
 2. Operating System: **Windows**.
@@ -220,7 +218,7 @@ SOURCE C:/RO-Server/rathena/sql-files/logs.sql;
 SHOW TABLES;
 ```
 
-Original successful record: after importing `main.sql`, `ragnarok` contained **56 tables**; after importing `logs.sql`, `ragnarok_log` contained **10 tables**. Table counts may differ with another source version.
+Reference table counts: **56** in `ragnarok` and **10** in `ragnarok_log`. Counts may differ with another source version; use the required tables and absence of import errors below as your checks.
 
 Completion check: `ragnarok` contains tables such as `login` and `char`; `ragnarok_log` contains `loginlog`; and the import reports no `ERROR`. If a file cannot be opened, check its `SOURCE` path.
 
@@ -284,4 +282,4 @@ Original teaching text and original diagrams, to the extent the author holds cop
 
 You may share and adapt this material for noncommercial purposes. Credit **rayjhih8263**, link to this repository and the license, and indicate changes. Shared adaptations must use the same license. Commercial use, including selling bundles, paid downloads, or inclusion in paid teaching materials, requires separate permission from the rights holder.
 
-Third-party software, game assets, trademarks, screenshots and images are excluded from this license and remain subject to their respective rights and licenses. This is an unofficial personal learning record. Attribution and an educational purpose do not replace permission. See [the license notice](../../LICENSE.md).
+Third-party software, game assets, trademarks, screenshots and images are excluded from this license and remain subject to their respective rights and licenses. This is an unofficial educational guide. Attribution and an educational purpose do not replace permission. See [the license notice](../../LICENSE.md).

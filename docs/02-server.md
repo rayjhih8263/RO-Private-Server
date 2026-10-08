@@ -2,8 +2,6 @@
 
 繁體中文 | [English](en/02-server.md)
 
-主流程已與最初架設對話中的成功紀錄交叉比對。原始碼版本記錄、編譯前 PACKETVER 核對、設定覆蓋檢查及開放外部連線前的提醒，是整理時補充的檢查，不代表當時已逐項完成。
-
 依序完成下面步驟。本章以 **Client 與 Server 在同一台 Windows 電腦上測試** 為前提；資料庫指令用於全新、空白資料庫。
 
 ## 1. 安裝 Git
@@ -51,7 +49,7 @@ git clone https://github.com/rathena/rathena.git
 C:\RO-Server\rathena
 ```
 
-要重現原本成功的版本，使用已保存的原始碼；上面的指令會下載當前版本。
+上面的指令會下載當前版本；若要在其他電腦使用相同版本，請保留原始碼或記錄 commit。
 
 完成確認：資料夾內能找到 `rAthena.sln`。下載後，在 Git Bash 輸入以下指令並記下輸出的版本編號，之後才能重現相同原始碼：
 
@@ -115,7 +113,7 @@ git rev-parse HEAD
 
 5. **建置方案**：上方「建置（B）」→「建置方案」，或同時按 **Ctrl + Shift + B**（Visual Studio 預設快捷鍵）。修改 PACKETVER 後，必須建置成功才會更新執行檔；若仍在執行舊的 Server，先關閉三個 Server 視窗再建置。
 
-6. **檢查建置結果**。查看 Visual Studio 下方的「輸出」視窗。你當時成功的結果是：
+6. **檢查建置結果**。查看 Visual Studio 下方的「輸出」視窗。建置成功輸出範例：
 
    ```text
    15 成功，0 失敗
@@ -131,7 +129,7 @@ git rev-parse HEAD
 
    不同原始碼版本的成功專案數可能不同。
 
-這是配合目前 Client 的設定步驟；你原本 Server 的最終 PACKETVER 仍待核對，詳見 [01 確認版本](01-versions.md)。
+請確認 Client 日期與 `PACKETVER` 一致，版本表見 [01 確認版本](01-versions.md)。
 
 參考：[rAthena packets.hpp](https://github.com/rathena/rathena/blob/master/src/config/packets.hpp)／[defines_pre.hpp](https://github.com/rathena/rathena/blob/master/src/custom/defines_pre.hpp)／[Visual Studio 快捷鍵](https://learn.microsoft.com/zh-tw/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)
 
@@ -139,7 +137,7 @@ git rev-parse HEAD
 
 下載：[MariaDB Server](https://mariadb.org/download/)
 
-已使用版本：**11.8.9**。在下載頁依序選擇：
+本教學版本：**11.8.9**。在下載頁依序選擇：
 
 1. MariaDB Server Version：**11.8.9**。
 2. Operating System：**Windows**。
@@ -220,7 +218,7 @@ SOURCE C:/RO-Server/rathena/sql-files/logs.sql;
 SHOW TABLES;
 ```
 
-原始成功紀錄：`main.sql` 匯入後，`ragnarok` 有 **56 個資料表**；`logs.sql` 匯入後，`ragnarok_log` 有 **10 個資料表**。不同原始碼版本的表數可能不同。
+資料表數量參考：`ragnarok` **56 個**、`ragnarok_log` **10 個**。不同原始碼版本的表數可能不同，請以下方的必要資料表與無錯誤結果為準。
 
 完成確認：`ragnarok` 中能看到 `login`、`char` 等資料表；`ragnarok_log` 中能看到 `loginlog`，且匯入過程沒有 `ERROR`。如果顯示無法開啟檔案，先檢查 `SOURCE` 路徑。
 
@@ -279,7 +277,7 @@ map-server.exe
 
 安裝畫面來源：上方已標示的 Microsoft、MariaDB 官方網站與文件；紅框欄位整理圖為本手冊製作。
 
-本倉庫整理個人的安裝紀錄，供學習與技術交流參考，並非官方文件，亦不代表與相關權利人有合作或授權關係。文中提及的軟體、商標及第三方圖片，其權利屬各權利人；使用、修改或散布時，仍須遵守原始授權及適用法律。標註來源或交流用途，不等於取得授權。
+本倉庫提供 Windows 環境的架設教學，供學習與技術交流參考，並非官方文件，亦不代表與相關權利人有合作或授權關係。文中提及的軟體、商標及第三方圖片，其權利屬各權利人；使用、修改或散布時，仍須遵守原始授權及適用法律。標註來源或交流用途，不等於取得授權。
 
 
 ## 教學內容授權

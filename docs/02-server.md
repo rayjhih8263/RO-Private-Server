@@ -270,6 +270,53 @@ map-server.exe
 
 **完成確認：三個 Server 保持執行，沒有資料庫或 Server 間連線錯誤。** 這代表本章的啟動檢查通過；能否登入遊戲，還需要完成下一章 Client 設定。
 
+## 10. 建立 GameMaster（GM）帳號
+
+GM 是遊戲管理員帳號，與步驟 6 的資料庫帳號不同。
+
+1. **開啟 MySQL Client (MariaDB)**，輸入 root 密碼，選取遊戲資料庫：
+
+   ```sql
+   USE ragnarok;
+   ```
+
+2. **確認密碼儲存設定**。開啟 `conf/login_athena.conf`，搜尋 `use_MD5_passwords`。以下主要指令適用於預設值：
+
+   ```text
+   use_MD5_passwords: no
+   ```
+
+   若 `conf/import/login_conf.txt` 也有這個欄位，以覆蓋後的設定為準。若實際值為 `yes`，步驟 4 的密碼值改用 `MD5('YOUR_GM_PASSWORD')`；不必為了建立帳號更改既有設定。
+
+3. **先檢查帳號是否已存在**。將 `YOUR_GM_USER` 換成想使用的遊戲帳號：
+
+   ```sql
+   SELECT account_id, userid, sex, group_id
+   FROM login
+   WHERE userid = 'YOUR_GM_USER';
+   ```
+
+   顯示 `Empty set` 才繼續建立；若已有資料，請另選帳號，避免重複建立。
+
+4. **建立 GM 帳號**。替換以下帳號、密碼後執行：
+
+   ```sql
+   INSERT INTO login (userid, user_pass, sex, email, group_id)
+   VALUES ('YOUR_GM_USER', 'YOUR_GM_PASSWORD', 'M', '', 99);
+   ```
+
+   - `YOUR_GM_USER`：自訂遊戲帳號，最長 23 個字元。
+   - `YOUR_GM_PASSWORD`：自訂遊戲密碼，以上明文範例最長 32 個字元；如包含單引號，SQL 中須寫成兩個單引號 `''`。
+   - `M`：男性角色帳號；女性角色帳號改成 `F`。不要使用 `S`，那是 Server 間連線帳號。
+   - `99`：rAthena 預設的 **Admin** 群組，具管理員權限。若已自訂群組，請核對 `conf/groups.yml` 與 `conf/import/groups.yml`。
+   - `account_id` 由資料庫自動產生，不需手動填寫。
+
+5. **確認建立成功**。再次執行步驟 3 的查詢，應看到一筆資料，`group_id` 為 **99**、`sex` 為選擇的 **M／F**。
+
+   完成 [03 建立 RO Client](03-client.md) 後，使用這組 **GM 遊戲帳號與密碼**登入。帳號已登入時若修改權限，請登出後重新登入。
+
+參考：[rAthena login 資料表](https://github.com/rathena/rathena/blob/master/sql-files/main.sql)／[密碼設定](https://github.com/rathena/rathena/blob/master/conf/login_athena.conf)／[管理員群組](https://github.com/rathena/rathena/blob/master/conf/groups.yml)
+
 [下一步：建立 RO Client](03-client.md)
 
 

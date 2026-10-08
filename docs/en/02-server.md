@@ -270,6 +270,53 @@ Successful startup indicators:
 
 **Completion check: all three servers remain running without database or inter-server connection errors.** This passes the startup check for this chapter; a game login still requires the client setup in the next chapter.
 
+## 10. Create a GameMaster (GM) account
+
+A GM is a game administrator account, separate from the database account in step 6.
+
+1. **Open MySQL Client (MariaDB)**, enter the root password and select the game database:
+
+   ```sql
+   USE ragnarok;
+   ```
+
+2. **Check password storage settings**. Open `conf/login_athena.conf` and search for `use_MD5_passwords`. The main command below uses the default:
+
+   ```text
+   use_MD5_passwords: no
+   ```
+
+   If `conf/import/login_conf.txt` also defines this setting, use the effective value after overrides. If it is `yes`, replace the password value in step 4 with `MD5('YOUR_GM_PASSWORD')`. Do not change an existing password-storage setting just to create this account.
+
+3. **Check whether the username already exists**. Replace `YOUR_GM_USER` with the desired game username:
+
+   ```sql
+   SELECT account_id, userid, sex, group_id
+   FROM login
+   WHERE userid = 'YOUR_GM_USER';
+   ```
+
+   Continue only if the result is `Empty set`. If an account exists, choose a different username to avoid duplicates.
+
+4. **Create the GM account**. Replace the username and password before running:
+
+   ```sql
+   INSERT INTO login (userid, user_pass, sex, email, group_id)
+   VALUES ('YOUR_GM_USER', 'YOUR_GM_PASSWORD', 'M', '', 99);
+   ```
+
+   - `YOUR_GM_USER`: your game username, up to 23 characters.
+   - `YOUR_GM_PASSWORD`: your game password, up to 32 characters for this plaintext example. Escape a single quote by writing two single quotes `''` in SQL.
+   - `M`: male character account; use `F` for a female character account. Do not use `S`, which is reserved for inter-server accounts.
+   - `99`: rAthena's default **Admin** group with administrator permissions. If groups have been customized, check `conf/groups.yml` and `conf/import/groups.yml`.
+   - The database generates `account_id` automatically.
+
+5. **Verify creation**. Run the query in step 3 again. It should return one row with `group_id` **99** and the selected `sex` **M/F**.
+
+   After completing [03 Set up the RO client](03-client.md), sign in using this **GM game username and password**. Log out and back in if permissions were changed while the account was logged in.
+
+References: [rAthena login table](https://github.com/rathena/rathena/blob/master/sql-files/main.sql) / [Password settings](https://github.com/rathena/rathena/blob/master/conf/login_athena.conf) / [Administrator group](https://github.com/rathena/rathena/blob/master/conf/groups.yml)
+
 [Next: Set up the RO client](03-client.md)
 
 ## Image sources
